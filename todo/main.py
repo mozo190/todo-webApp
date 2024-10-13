@@ -43,12 +43,13 @@ while True:
                 todos = file.readlines()
 
             index = int(input('Enter index:'))
+            todo_to_remove = todos[index - 1].strip('\n')
             todos.pop(index - 1)
 
             with open('files/todos.txt', 'w') as file:
                 file.writelines(todos)
 
-            message = f'Todo with index {index} has been completed.'
+            message = f'Todo with index {index}: "{todo_to_remove}" has been completed.'
             print(message)
 
         case 'exit':
