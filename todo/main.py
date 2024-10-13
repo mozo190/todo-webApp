@@ -54,7 +54,6 @@ while True:
 
         read_todos_txt_file()
 
-        # index = int(input('Enter index:'))
         todo_to_remove = todos[number - 1].strip('\n')
         todos.pop(number - 1)
 
