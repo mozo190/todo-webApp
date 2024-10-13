@@ -50,15 +50,17 @@ while True:
         write_into_todos_txt_file()
 
     elif 'complete' in user_action:
+        number = int(user_action[9:])
+
         read_todos_txt_file()
 
-        index = int(input('Enter index:'))
-        todo_to_remove = todos[index - 1].strip('\n')
-        todos.pop(index - 1)
+        # index = int(input('Enter index:'))
+        todo_to_remove = todos[number - 1].strip('\n')
+        todos.pop(number - 1)
 
         write_into_todos_txt_file()
 
-        message = f'Todo with index {index}: "{todo_to_remove}" has been completed.'
+        message = f'Todo with index {number}: "{todo_to_remove}" has been completed.'
         print(message)
 
     elif 'exit' in user_action:
