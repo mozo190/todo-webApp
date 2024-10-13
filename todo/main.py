@@ -25,7 +25,7 @@ while True:
 
         write_into_todos_txt_file()
 
-    if 'show' in user_action:
+    elif 'show' in user_action:
         read_todos_txt_file()
 
         new_todos = []
@@ -37,16 +37,19 @@ while True:
         for index, todo in enumerate(new_todos):
             print(f"{index + 1}. {todo}")
 
-    if 'edit' in user_action:
+    elif 'edit' in user_action:
+        number = int(user_action[5:])
+        print(number)
+
         read_todos_txt_file()
 
-        index = int(input('Enter index:'))
+        # index = int(input('Enter index:'))
         todo = input('Enter todo:') + '\n'
-        todos[index - 1] = todo
+        todos[number] = todo
 
         write_into_todos_txt_file()
 
-    if 'complete' in user_action:
+    elif 'complete' in user_action:
         read_todos_txt_file()
 
         index = int(input('Enter index:'))
@@ -58,7 +61,10 @@ while True:
         message = f'Todo with index {index}: "{todo_to_remove}" has been completed.'
         print(message)
 
-    if 'exit' in user_action:
+    elif 'exit' in user_action:
         break
+
+    else:
+        print('Invalid command!')
 
 print('Goodbye!')
