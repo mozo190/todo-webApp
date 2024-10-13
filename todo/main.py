@@ -60,3 +60,5 @@ while True:
 
     if 'exit' in user_action:
         break
+
+print('Goodbye!')
