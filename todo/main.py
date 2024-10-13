@@ -49,6 +49,7 @@ while True:
                 file.writelines(todos)
 
             message = f'Todo with index {index} has been completed.'
+            print(message)
 
         case 'exit':
             break
