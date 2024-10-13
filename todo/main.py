@@ -6,20 +6,17 @@ while True:
         case 'add':
             todo = input('Enter todo:') + '\n'
 
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
             todos.append(todo)
 
-            file = open('files/todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case 'show':
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
             new_todos = []
 
@@ -31,29 +28,27 @@ while True:
                 print(f"{index + 1}. {todo}")
 
         case 'edit':
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
             index = int(input('Enter index:'))
-            todo = input('Enter todo:')
+            todo = input('Enter todo:') + '\n'
             todos[index - 1] = todo
 
-            file = open('files/todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos)
 
         case 'complete':
-            file = open('files/todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('files/todos.txt', 'r') as file:
+                todos = file.readlines()
 
             index = int(input('Enter index:'))
             todos.pop(index - 1)
 
-            file = open('files/todos.txt', 'w')
-            file.writelines(todos)
-            file.close()
+            with open('files/todos.txt', 'w') as file:
+                file.writelines(todos)
+
+            message = f'Todo with index {index} has been completed.'
 
         case 'exit':
             break
