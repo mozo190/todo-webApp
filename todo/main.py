@@ -39,5 +39,17 @@ while True:
             file.writelines(todos)
             file.close()
 
+        case 'complete':
+            file = open('files/todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
+            index = int(input('Enter index:'))
+            todos.pop(index-1)
+
+            file = open('files/todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
+
         case 'exit':
             break
