@@ -1,3 +1,9 @@
+def read_todos_txt_file():
+    global file, todos
+    with open('files/todos.txt', 'r') as file:
+        todos = file.readlines()
+
+
 while True:
     user_action = input('Enter command "add", "show", "edit", "complete", or "exit":')
     user_action = user_action.strip()
@@ -15,8 +21,7 @@ while True:
                 file.writelines(todos)
 
         case 'show':
-            with open('files/todos.txt', 'r') as file:
-                todos = file.readlines()
+            read_todos_txt_file()
 
             new_todos = []
 
@@ -28,8 +33,7 @@ while True:
                 print(f"{index + 1}. {todo}")
 
         case 'edit':
-            with open('files/todos.txt', 'r') as file:
-                todos = file.readlines()
+            read_todos_txt_file()
 
             index = int(input('Enter index:'))
             todo = input('Enter todo:') + '\n'
@@ -39,8 +43,7 @@ while True:
                 file.writelines(todos)
 
         case 'complete':
-            with open('files/todos.txt', 'r') as file:
-                todos = file.readlines()
+            read_todos_txt_file()
 
             index = int(input('Enter index:'))
             todo_to_remove = todos[index - 1].strip('\n')
