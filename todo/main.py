@@ -7,7 +7,17 @@ while True:
     match user_action:
         case 'add':
             todo = input('Enter todo:')
+
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
+
             todos.append(todo)
+
+            file = open('todos.txt', 'w')
+            file.writelines(todos)
+            file.close()
+
         case 'show':
             for index, todo in enumerate(todos):
                 print(f"{index+1}. {todo}")
