@@ -1,25 +1,25 @@
 
 
 while True:
-    user_action = input('Enter command "add", "show", "edit", or "exit":')
+    user_action = input('Enter command "add", "show", "edit", "complete", or "exit":')
     user_action = user_action.strip()
 
     match user_action:
         case 'add':
             todo = input('Enter todo:') + '\n'
 
-            file = open('todos.txt', 'r')
+            file = open('files/todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w')
+            file = open('files/todos.txt', 'w')
             file.writelines(todos)
             file.close()
 
         case 'show':
-            file = open('todos.txt', 'r')
+            file = open('files/todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
@@ -27,7 +27,7 @@ while True:
                 print(f"{index+1}. {todo}")
 
         case 'edit':
-            file = open('todos.txt', 'r')
+            file = open('files/todos.txt', 'r')
             todos = file.readlines()
             file.close()
 
@@ -35,7 +35,7 @@ while True:
             todo = input('Enter todo:')
             todos[index-1] = todo
 
-            file = open('todos.txt', 'w')
+            file = open('files/todos.txt', 'w')
             file.writelines(todos)
             file.close()
 
