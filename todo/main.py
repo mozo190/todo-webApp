@@ -9,7 +9,8 @@ while True:
             todo = input('Enter todo:')
             todos.append(todo)
         case 'show':
-            print(todos)
+            for index, todo in enumerate(todos):
+                print(f"{index+1}. {todo}")
         case 'edit':
             index = int(input('Enter index:'))
             todo = input('Enter todo:')
