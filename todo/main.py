@@ -16,7 +16,7 @@ while True:
 
     # match user_action:
     if 'add' in user_action:
-        todo = input('Enter todo:') + '\n'
+        todo = user_action[4:] + '\n'
 
         with open('files/todos.txt', 'r') as file:
             todos = file.readlines()
