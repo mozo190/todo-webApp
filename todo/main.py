@@ -1,7 +1,7 @@
 todos = []
 
 while True:
-    user_action = input('Enter command:')
+    user_action = input('Enter command "add", "show", "edit", or "exit":')
     user_action = user_action.strip()
 
     match user_action:
@@ -19,6 +19,9 @@ while True:
             file.close()
 
         case 'show':
+            file = open('todos.txt', 'r')
+            todos = file.readlines()
+            file.close()
             for index, todo in enumerate(todos):
                 print(f"{index+1}. {todo}")
         case 'edit':
