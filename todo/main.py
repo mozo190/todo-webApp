@@ -1,5 +1,3 @@
-
-
 while True:
     user_action = input('Enter command "add", "show", "edit", "complete", or "exit":')
     user_action = user_action.strip()
@@ -23,8 +21,14 @@ while True:
             todos = file.readlines()
             file.close()
 
-            for index, todo in enumerate(todos):
-                print(f"{index+1}. {todo}")
+            new_todos = []
+
+            for item in todos:
+                new_item = item.strip('\n')
+                new_todos.append(new_item)
+
+            for index, todo in enumerate(new_todos):
+                print(f"{index + 1}. {todo}")
 
         case 'edit':
             file = open('files/todos.txt', 'r')
@@ -33,7 +37,7 @@ while True:
 
             index = int(input('Enter index:'))
             todo = input('Enter todo:')
-            todos[index-1] = todo
+            todos[index - 1] = todo
 
             file = open('files/todos.txt', 'w')
             file.writelines(todos)
@@ -45,7 +49,7 @@ while True:
             file.close()
 
             index = int(input('Enter index:'))
-            todos.pop(index-1)
+            todos.pop(index - 1)
 
             file = open('files/todos.txt', 'w')
             file.writelines(todos)
