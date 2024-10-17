@@ -1,8 +1,8 @@
 PATH = 'files/todos.txt'
 
 
-def read_todos_txt_file(path):
-    with open(path, 'r') as file_local:
+def read_todos_txt_file(file_path):
+    with open(file_path, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
 
