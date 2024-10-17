@@ -1,13 +1,13 @@
 def read_todos_txt_file():
-    global file, todos
-    with open('files/todos.txt', 'r') as file:
-        todos = file.readlines()
+    with open('files/todos.txt', 'r') as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
 
 
 def write_into_todos_txt_file():
-    global file
-    with open('files/todos.txt', 'w') as file:
-        file.writelines(todos)
+    with open('files/todos.txt', 'w') as file_local:
+        todos_local = file_local.writelines(todos)
+    return todos_local
 
 
 while True:
@@ -18,15 +18,14 @@ while True:
     if 'add' in user_action:
         todo = user_action[4:] + '\n'
 
-        with open('files/todos.txt', 'r') as file:
-            todos = file.readlines()
+        todos = read_todos_txt_file()
 
         todos.append(todo)
 
         write_into_todos_txt_file()
 
     elif 'show' in user_action:
-        read_todos_txt_file()
+        todos = read_todos_txt_file()
 
         new_todos = []
 
@@ -41,7 +40,7 @@ while True:
         number = int(user_action[5:])
         print(number)
 
-        read_todos_txt_file()
+        todos = read_todos_txt_file()
 
         # index = int(input('Enter index:'))
         todo = input('Enter todo:') + '\n'
@@ -52,7 +51,7 @@ while True:
     elif 'complete' in user_action:
         number = int(user_action[9:])
 
-        read_todos_txt_file()
+        todos = read_todos_txt_file()
 
         todo_to_remove = todos[number - 1].strip('\n')
         todos.pop(number - 1)
