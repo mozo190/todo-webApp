@@ -1,11 +1,16 @@
-def read_todos_txt_file():
-    with open('files/todos.txt', 'r') as file_local:
+from ast import Index
+
+PATH = 'files/todos.txt'
+
+
+def read_todos_txt_file(path):
+    with open(path, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
 
 
-def write_into_todos_txt_file():
-    with open('files/todos.txt', 'w') as file_local:
+def write_into_todos_txt_file(path):
+    with open(path, 'w') as file_local:
         todos_local = file_local.writelines(todos)
     return todos_local
 
@@ -18,14 +23,14 @@ while True:
     if user_action.startswith('add'):
         todo = user_action[4:]
 
-        todos = read_todos_txt_file()
+        todos = read_todos_txt_file(PATH)
 
         todos.append(todo + '\n')
 
-        write_into_todos_txt_file()
+        write_into_todos_txt_file(PATH)
 
     elif user_action.startswith('show'):
-        todos = read_todos_txt_file()
+        todos = read_todos_txt_file(PATH)
 
         new_todos = []
 
@@ -41,29 +46,33 @@ while True:
             number = int(user_action[5:])
             print(number)
 
-            todos = read_todos_txt_file()
+            todos = read_todos_txt_file(PATH)
 
             # index = int(input('Enter index:'))
             todo = input('Enter todo:') + '\n'
-            todos[number-1] = todo
+            todos[number - 1] = todo
 
-            write_into_todos_txt_file()
+            write_into_todos_txt_file(PATH)
         except ValueError:
             print('Invalid index!')
             continue
 
     elif user_action.startswith('complete'):
-        number = int(user_action[9:])
+        try:
+            number = int(user_action[9:])
 
-        todos = read_todos_txt_file()
+            todos = read_todos_txt_file(PATH)
 
-        todo_to_remove = todos[number - 1].strip('\n')
-        todos.pop(number - 1)
+            todo_to_remove = todos[number - 1].strip('\n')
+            todos.pop(number - 1)
 
-        write_into_todos_txt_file()
+            write_into_todos_txt_file(PATH)
 
-        message = f'Todo with index {number}: "{todo_to_remove}" has been completed.'
-        print(message)
+            message = f'Todo with index {number}: "{todo_to_remove}" has been completed.'
+            print(message)
+        except IndexError:
+            print('Invalid index!')
+            continue
 
     elif user_action.startswith('exit'):
         break
