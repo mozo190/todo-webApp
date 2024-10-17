@@ -44,7 +44,7 @@ while True:
 
         # index = int(input('Enter index:'))
         todo = input('Enter todo:') + '\n'
-        todos[number] = todo
+        todos[number-1] = todo
 
         write_into_todos_txt_file()
 
