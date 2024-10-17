@@ -37,16 +37,19 @@ while True:
             print(f"{index + 1}. {todo}")
 
     elif user_action.startswith('edit'):
-        number = int(user_action[5:])
-        print(number)
+        try:
+            number = int(user_action[5:])
+            print(number)
 
-        todos = read_todos_txt_file()
+            todos = read_todos_txt_file()
 
-        # index = int(input('Enter index:'))
-        todo = input('Enter todo:') + '\n'
-        todos[number-1] = todo
+            # index = int(input('Enter index:'))
+            todo = input('Enter todo:') + '\n'
+            todos[number-1] = todo
 
-        write_into_todos_txt_file()
+            write_into_todos_txt_file()
+        except ValueError:
+            print('Invalid index!')
 
     elif user_action.startswith('complete'):
         number = int(user_action[9:])
