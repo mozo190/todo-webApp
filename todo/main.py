@@ -15,7 +15,7 @@ while True:
     user_action = user_action.strip()
 
     # match user_action:
-    if 'add' in user_action.startswith('add'):
+    if user_action.startswith('add'):
         todo = user_action[4:]
 
         todos = read_todos_txt_file()
@@ -24,7 +24,7 @@ while True:
 
         write_into_todos_txt_file()
 
-    elif 'show' in user_action.startswith('show'):
+    elif user_action.startswith('show'):
         todos = read_todos_txt_file()
 
         new_todos = []
@@ -36,7 +36,7 @@ while True:
         for index, todo in enumerate(new_todos):
             print(f"{index + 1}. {todo}")
 
-    elif 'edit' in user_action.startswith('edit'):
+    elif user_action.startswith('edit'):
         number = int(user_action[5:])
         print(number)
 
@@ -48,7 +48,7 @@ while True:
 
         write_into_todos_txt_file()
 
-    elif 'complete' in user_action.startswith('complete'):
+    elif user_action.startswith('complete'):
         number = int(user_action[9:])
 
         todos = read_todos_txt_file()
@@ -61,7 +61,7 @@ while True:
         message = f'Todo with index {number}: "{todo_to_remove}" has been completed.'
         print(message)
 
-    elif 'exit' in user_action.startswith('exit'):
+    elif user_action.startswith('exit'):
         break
 
     else:
