@@ -1,5 +1,3 @@
-from ast import Index
-
 PATH = 'files/todos.txt'
 
 
