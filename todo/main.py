@@ -50,6 +50,7 @@ while True:
             write_into_todos_txt_file()
         except ValueError:
             print('Invalid index!')
+            continue
 
     elif user_action.startswith('complete'):
         number = int(user_action[9:])
