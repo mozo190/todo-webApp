@@ -1,3 +1,5 @@
+import random
+
 password = '12345678aaaA'
 
 
@@ -51,3 +53,9 @@ def speed(distance, time):
 
 
 print(speed(5, 300))
+
+first = int(input('Enter the lower bound: '))
+second = int(input('Enter the upper bound: '))
+
+random_number = random.randint(first, second)
+print(random_number)
