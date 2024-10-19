@@ -1,13 +1,13 @@
 password = '12345678aaaA'
 
 
-def strength(password):
-    if len(password) <= 8:
+def strength(passw):
+    if len(passw) <= 8:
         return 'Weak Password'
 
-    if not any(car.isupper() for car in password):
+    if not any(car.isupper() for car in passw):
         return "Weak Password"
-    if not any(car.isdigit() for car in password):
+    if not any(car.isdigit() for car in passw):
         return "Weak Password"
     else:
         return 'Strong Password'
