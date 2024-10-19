@@ -1,16 +1,4 @@
-PATH = 'files/todos.txt'
-
-
-def read_todos_txt_file(file_path=PATH):
-    with open(file_path, 'r') as file_local:
-        todos_local = file_local.readlines()
-    return todos_local
-
-
-def write_into_todos_txt_file(path=PATH):
-    with open(path, 'w') as file_local:
-        file_local.writelines(todos)
-
+from functions import read_todos_txt_file, write_into_todos_txt_file
 
 while True:
     user_action = input('Enter command "add", "show", "edit", "complete", or "exit":')
@@ -24,7 +12,7 @@ while True:
 
         todos.append(todo + '\n')
 
-        write_into_todos_txt_file()
+        write_into_todos_txt_file(todos)
 
     elif user_action.startswith('show'):
         todos = read_todos_txt_file()
@@ -49,7 +37,7 @@ while True:
             todo = input('Enter todo:') + '\n'
             todos[number - 1] = todo
 
-            write_into_todos_txt_file()
+            write_into_todos_txt_file(todos)
         except ValueError:
             print('Invalid index!')
             continue
@@ -63,7 +51,7 @@ while True:
             todo_to_remove = todos[number - 1].strip('\n')
             todos.pop(number - 1)
 
-            write_into_todos_txt_file()
+            write_into_todos_txt_file(todos)
 
             message = f'Todo with index {number}: "{todo_to_remove}" has been completed.'
             print(message)
