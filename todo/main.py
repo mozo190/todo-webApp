@@ -1,13 +1,13 @@
 PATH = 'files/todos.txt'
 
 
-def read_todos_txt_file(file_path):
+def read_todos_txt_file(file_path=PATH):
     with open(file_path, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
 
 
-def write_into_todos_txt_file(path):
+def write_into_todos_txt_file(path=PATH):
     with open(path, 'w') as file_local:
         file_local.writelines(todos)
 
@@ -20,14 +20,14 @@ while True:
     if user_action.startswith('add'):
         todo = user_action[4:]
 
-        todos = read_todos_txt_file(PATH)
+        todos = read_todos_txt_file()
 
         todos.append(todo + '\n')
 
-        write_into_todos_txt_file(PATH)
+        write_into_todos_txt_file()
 
     elif user_action.startswith('show'):
-        todos = read_todos_txt_file(PATH)
+        todos = read_todos_txt_file()
 
         new_todos = []
 
@@ -43,13 +43,13 @@ while True:
             number = int(user_action[5:])
             print(number)
 
-            todos = read_todos_txt_file(PATH)
+            todos = read_todos_txt_file()
 
             # index = int(input('Enter index:'))
             todo = input('Enter todo:') + '\n'
             todos[number - 1] = todo
 
-            write_into_todos_txt_file(PATH)
+            write_into_todos_txt_file()
         except ValueError:
             print('Invalid index!')
             continue
@@ -58,12 +58,12 @@ while True:
         try:
             number = int(user_action[9:])
 
-            todos = read_todos_txt_file(PATH)
+            todos = read_todos_txt_file()
 
             todo_to_remove = todos[number - 1].strip('\n')
             todos.pop(number - 1)
 
-            write_into_todos_txt_file(PATH)
+            write_into_todos_txt_file()
 
             message = f'Todo with index {number}: "{todo_to_remove}" has been completed.'
             print(message)
