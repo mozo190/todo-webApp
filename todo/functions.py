@@ -1,5 +1,3 @@
-# from main import todos
-
 PATH = 'files/todos.txt'
 
 
