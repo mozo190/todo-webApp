@@ -9,8 +9,7 @@ def read_todos_txt_file(file_path):
 
 def write_into_todos_txt_file(path):
     with open(path, 'w') as file_local:
-        todos_local = file_local.writelines(todos)
-    return todos_local
+        file_local.writelines(todos)
 
 
 while True:
