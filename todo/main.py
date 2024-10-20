@@ -1,4 +1,9 @@
+import time
+
 from functions import read_todos_txt_file, write_into_todos_txt_file
+
+now = time.strftime('%Y-%m-%d %H:%M:%S')
+print(f'Current time: {now}')
 
 while True:
     user_action = input('Enter command "add", "show", "edit", "complete", or "exit":')
