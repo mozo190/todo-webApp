@@ -17,6 +17,7 @@ while True:
             todos = functions.read_todos_txt_file()
             todos.append(values["todo"] + '\n')
             functions.write_into_todos_txt_file(todos)
+            window["todo"].update(value="")
         case sg.WIN_CLOSED:
             break
 
