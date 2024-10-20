@@ -13,6 +13,14 @@ compress_button = sg.Button("Compress")
 window = sg.Window("File Compressor", layout=[[label1, input_box1, choose_button1],
                                               [label2, input_box2, choose_button2],
                                               [compress_button]])
-
-window.read()
+while True:
+    event, values = window.read()
+    print(1, event)
+    print(2, values)
+    if event == sg.WIN_CLOSED:
+        break
+    elif event == "Compress":
+        print("Compressing...")
+        break
+print("Goodbye!")
 window.close()
