@@ -10,11 +10,12 @@ list_box = sg.Listbox(values=functions.read_todos_txt_file(), size=(40, 10),
 edit_button = sg.Button("Edit")
 
 window = sg.Window("Todo App",
-                   layout=[[label], [input_box, add_button]],
+                   layout=[[label], [input_box, add_button], [list_box, edit_button]],
                    font=('Helvetica', 14))
 
 while True:
     event, values = window.read()
+    print(event, values)
     match event:
         case "Add":
             todos = functions.read_todos_txt_file()
