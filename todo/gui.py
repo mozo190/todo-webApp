@@ -33,6 +33,7 @@ while True:
             index = todos.index(todo_to_edit + '\n')
             todos[index] = new_todo + '\n'
             functions.write_into_todos_txt_file(todos)
+            window["todos"].update(values=functions.read_todos_txt_file())
         case sg.WIN_CLOSED:
             break
 
