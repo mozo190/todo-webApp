@@ -10,10 +10,11 @@ input_box2 = sg.Input()
 choose_button2 = sg.FolderBrowse("Choose", key="destination")
 
 compress_button = sg.Button("Compress")
+output_label = sg.Text(key="output")
 
 window = sg.Window("File Compressor", layout=[[label1, input_box1, choose_button1],
                                               [label2, input_box2, choose_button2],
-                                              [compress_button]])
+                                              [compress_button, output_label]])
 while True:
     event, values = window.read()
     print(1, event, values)
@@ -26,6 +27,7 @@ while True:
     elif event == "Compress":
         print("Compressing...")
         zip_creator.make_archive(filepaths, folder)
-        break
+        window["output"].update("Files compressed successfully")
+        print("Files compressed successfully")
 print("Goodbye!")
 window.close()
