@@ -15,13 +15,15 @@ window = sg.Window("Todo App",
 
 while True:
     event, values = window.read()
-    print(event, values)
+    print(event)
+    print(values)
     match event:
         case "Add":
             todos = functions.read_todos_txt_file()
             todos.append(values["todo"] + '\n')
             functions.write_into_todos_txt_file(todos)
             window["todo"].update(value="")
+            window["todos"].update(values=functions.read_todos_txt_file())
         case sg.WIN_CLOSED:
             break
 
