@@ -34,6 +34,8 @@ while True:
             todos[index] = new_todo + '\n'
             functions.write_into_todos_txt_file(todos)
             window["todos"].update(values=functions.read_todos_txt_file())
+        case "todos":
+            window["todo"].update(value=values["todos"][0])
         case sg.WIN_CLOSED:
             break
 
