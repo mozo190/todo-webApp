@@ -37,7 +37,9 @@ while True:
             window["todos"].update(values=functions.read_todos_txt_file())
         case "todos":
             window["todo"].update(value=values["todos"][0])
-        case "Exit", sg.WIN_CLOSED:
+        case "Exit":
             break
-
+        case sg.WIN_CLOSED:
+            break
+print("Goodbye!")
 window.close()
