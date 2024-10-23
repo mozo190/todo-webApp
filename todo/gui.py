@@ -9,7 +9,7 @@ list_box = sg.Listbox(values=functions.read_todos_txt_file(), size=(40, 10),
                       key="todos", enable_events=True)
 edit_button = sg.Button("Edit")
 exit_button = sg.Button("Exit")
-complete_button = sg.Button("complete")
+complete_button = sg.Button("Complete")
 
 window = sg.Window("Todo App",
                    layout=[[label],
@@ -40,7 +40,7 @@ while True:
             functions.write_into_todos_txt_file(todos)
             window["todos"].update(values=todos)
 
-        case "complete":
+        case "Complete":
             todo_to_complete = values["todos"][0]
             todos = functions.read_todos_txt_file()
             todos.remove(todo_to_complete)
