@@ -4,6 +4,8 @@ import FreeSimpleGUI as sg
 
 import functions
 
+sg.theme("DarkAmber")
+
 clock_label = sg.Text("", key="clock")
 label = sg.Text("My To-do App")
 input_box = sg.InputText(tooltip="Enter todo", size=(40, 1), key="todo")
@@ -25,9 +27,9 @@ window = sg.Window("Todo App",
 while True:
     event, values = window.read(timeout=1000)
     window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
-    print(1, event)
-    print(2, values)
-    print(3, values["todos"])
+    # print(1, event)
+    # print(2, values)
+    # print(3, values["todos"])
     match event:
         case "Add":
             todos = functions.read_todos_txt_file()
