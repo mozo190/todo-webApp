@@ -9,7 +9,7 @@ sg.theme("LightBrown4")
 clock_label = sg.Text("", key="clock")
 label = sg.Text("My To-do App")
 input_box = sg.InputText(tooltip="Enter todo", size=(40, 1), key="todo")
-add_button = sg.Button("Add")
+add_button = sg.Button("Add", size=(10, 1))
 list_box = sg.Listbox(values=functions.read_todos_txt_file(), size=(40, 10),
                       key="todos", enable_events=True)
 edit_button = sg.Button("Edit")
