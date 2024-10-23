@@ -1,7 +1,10 @@
+import time
+
 import FreeSimpleGUI as sg
 
 import functions
 
+clock_label = sg.Text("", key="clock")
 label = sg.Text("My To-do App")
 input_box = sg.InputText(tooltip="Enter todo", size=(40, 1), key="todo")
 add_button = sg.Button("Add")
@@ -12,14 +15,16 @@ exit_button = sg.Button("Exit")
 complete_button = sg.Button("Complete")
 
 window = sg.Window("Todo App",
-                   layout=[[label],
+                   layout=[[clock_label],
+                           [label],
                            [input_box, add_button],
                            [list_box, edit_button, complete_button],
                            [exit_button]],
                    font=('Helvetica', 14))
 
 while True:
-    event, values = window.read()
+    event, values = window.read(timeout=1000)
+    window["clock"].update(value=time.strftime("%b %d, %Y %H:%M:%S"))
     print(1, event)
     print(2, values)
     print(3, values["todos"])
