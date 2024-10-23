@@ -44,12 +44,15 @@ while True:
                 sg.popup("Please select an item first.")
 
         case "Complete":
-            todo_to_complete = values["todos"][0]
-            todos = functions.read_todos_txt_file()
-            todos.remove(todo_to_complete)
-            functions.write_into_todos_txt_file(todos)
-            window["todos"].update(values=todos)
-            window["todo"].update(value="")
+            try:
+                todo_to_complete = values["todos"][0]
+                todos = functions.read_todos_txt_file()
+                todos.remove(todo_to_complete)
+                functions.write_into_todos_txt_file(todos)
+                window["todos"].update(values=todos)
+                window["todo"].update(value="")
+            except IndexError:
+                sg.popup("Please select an item first.")
         case "todos":
             window["todo"].update(value=values["todos"][0])
         case "Exit":
