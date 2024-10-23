@@ -41,7 +41,7 @@ while True:
                 functions.write_into_todos_txt_file(todos)
                 window["todos"].update(values=todos)
             except IndexError:
-                print("Please select an item first.")
+                sg.popup("Please select an item first.")
 
         case "Complete":
             todo_to_complete = values["todos"][0]
