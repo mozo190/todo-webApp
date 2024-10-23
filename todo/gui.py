@@ -4,7 +4,7 @@ import FreeSimpleGUI as sg
 
 import functions
 
-sg.theme("DarkAmber")
+sg.theme("LightBrown4")
 
 clock_label = sg.Text("", key="clock")
 label = sg.Text("My To-do App")
