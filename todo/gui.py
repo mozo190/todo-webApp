@@ -31,14 +31,17 @@ while True:
             window["todo"].update(value="")
             window["todos"].update(values=todos)
         case "Edit":
-            todo_to_edit = values["todos"][0]
-            new_todo = values["todo"]
+            try:
+                todo_to_edit = values["todos"][0]
+                new_todo = values["todo"]
 
-            todos = functions.read_todos_txt_file()
-            index = todos.index(todo_to_edit)
-            todos[index] = new_todo
-            functions.write_into_todos_txt_file(todos)
-            window["todos"].update(values=todos)
+                todos = functions.read_todos_txt_file()
+                index = todos.index(todo_to_edit)
+                todos[index] = new_todo
+                functions.write_into_todos_txt_file(todos)
+                window["todos"].update(values=todos)
+            except IndexError:
+                print("Please select an item first.")
 
         case "Complete":
             todo_to_complete = values["todos"][0]
