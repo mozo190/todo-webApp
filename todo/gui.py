@@ -44,7 +44,7 @@ while True:
 
                 todos = functions.read_todos_txt_file()
                 index = todos.index(todo_to_edit)
-                todos[index] = new_todo
+                todos[index] = new_todo + '\n'
                 functions.write_into_todos_txt_file(todos)
                 window["todos"].update(values=todos)
                 window["todo"].update(value="")
