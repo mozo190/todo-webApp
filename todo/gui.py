@@ -9,7 +9,7 @@ sg.theme("LightBrown4")
 clock_label = sg.Text("", key="clock")
 label = sg.Text("My To-do App")
 input_box = sg.InputText(tooltip="Enter todo", size=(40, 1), key="todo")
-add_button = sg.Button("Add", size=(10, 1))
+add_button = sg.Button( size=(10, 1), image_source="add.png", tooltip="Add todo", key="Add")
 list_box = sg.Listbox(values=functions.read_todos_txt_file(), size=(40, 10),
                       key="todos", enable_events=True)
 edit_button = sg.Button("Edit")
@@ -47,6 +47,7 @@ while True:
                 todos[index] = new_todo
                 functions.write_into_todos_txt_file(todos)
                 window["todos"].update(values=todos)
+                window["todo"].update(value="")
             except IndexError:
                 sg.popup("Please select an item first.")
 
