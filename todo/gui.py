@@ -9,12 +9,12 @@ sg.theme("LightBrown4")
 clock_label = sg.Text("", key="clock")
 label = sg.Text("My To-do App")
 input_box = sg.InputText(tooltip="Enter todo", size=(40, 1), key="todo")
-add_button = sg.Button(size=(10, 1), image_source="add.png", tooltip="Add todo", key="Add")
+add_button = sg.Button(size=(10, 1), image_source="assets/img/add.png", tooltip="Add todo", key="Add")
 list_box = sg.Listbox(values=functions.read_todos_txt_file(), size=(40, 10),
                       key="todos", enable_events=True)
 edit_button = sg.Button("Edit")
 exit_button = sg.Button("Exit")
-complete_button = sg.Button(key="Complete", image_source="complete.png")
+complete_button = sg.Button(key="Complete", image_source="assets/img/complete.png")
 
 window = sg.Window("Todo App",
                    layout=[[clock_label],
