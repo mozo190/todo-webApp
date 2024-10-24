@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 
 import fileUnZip_functions as functions
+from gui import exit_button
 
 sg.theme("DarkBlue3")
 
@@ -15,10 +16,12 @@ choose_button2 = sg.FolderBrowse("Choose", key="destination")
 extract_button = sg.Button("Extract")
 output_label = sg.Text(key="output", text_color="white")
 
+exit_button = sg.Button("Exit")
+
 window = sg.Window("File Extractor",
                    layout=[[label1, input_box1, choose_button1],
                            [label2, input_box2, choose_button2],
-                           [extract_button, output_label]])
+                           [extract_button, exit_button, output_label]])
 while True:
     event, values = window.read()
     print(1, event, values)
@@ -33,6 +36,9 @@ while True:
         functions.extract_files(filepaths[0], folder)
         window["output"].update("Files extracted successfully")
         print("Files extracted successfully")
+
+    elif event == "Exit":
+        break
 
 print("Goodbye!")
 window.close()
