@@ -32,10 +32,7 @@ while True:
         if not filepaths or not folder:
             sg.popup("Please select files and destination folder.")
             continue
-        print("Extracting...")
         functions.extract_files(filepaths[0], folder)
         window["output"].update("Files extracted successfully")
 
-
-print("Goodbye!")
 window.close()
