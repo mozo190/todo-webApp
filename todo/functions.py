@@ -17,9 +17,9 @@ def write_into_todos_txt_file(todos, path=PATH):
 
 
 def add_todo():
-    todo = streamlit.session_state["new_todo"] + '\n'
+    todo1 = streamlit.session_state["new_todo"] + '\n'
     todos = read_todos_txt_file()
-    todos.append(todo + '\n')
+    todos.append(todo1)
     write_into_todos_txt_file(todos)
     streamlit.session_state["new_todo"] = ""
     # streamlit.experimental_rerun()
