@@ -11,4 +11,4 @@ st.write('Welcome to the Web ToDo App!')
 for todo in todos:
     st.checkbox(todo)
 
-st.text_input(label='Add a new task')
+st.text_input(label='Add a new task', on_change=functions.add_todo)

@@ -1,3 +1,5 @@
+import streamlit
+
 PATH = 'todos.txt'
 
 
@@ -17,3 +19,7 @@ def write_into_todos_txt_file(todos, path=PATH):
 if __name__ == '__main__':
     print("This is a module with functions for the todo app.")
     print(read_todos_txt_file())
+
+
+def add_todo():
+    todo = streamlit.session_state["new_todo"]
