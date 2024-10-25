@@ -16,10 +16,15 @@ def write_into_todos_txt_file(todos, path=PATH):
         file_local.writelines(todos)
 
 
+def add_todo():
+    todo = streamlit.session_state["new_todo"] + '\n'
+    todos = read_todos_txt_file()
+    todos.append(todo + '\n')
+    write_into_todos_txt_file(todos)
+    streamlit.session_state["new_todo"] = ""
+    # streamlit.experimental_rerun()
+
+
 if __name__ == '__main__':
     print("This is a module with functions for the todo app.")
     print(read_todos_txt_file())
-
-
-def add_todo():
-    todo = streamlit.session_state["new_todo"]
