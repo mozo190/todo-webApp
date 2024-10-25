@@ -17,12 +17,12 @@ def write_into_todos_txt_file(todos, path=PATH):
 
 
 def add_todo():
+    """ Add a new todo to the todos list. """
     todo1 = streamlit.session_state["new_todo"] + '\n'
     todos = read_todos_txt_file()
     todos.append(todo1)
     write_into_todos_txt_file(todos)
     streamlit.session_state["new_todo"] = ""
-    # streamlit.experimental_rerun()
 
 
 if __name__ == '__main__':
