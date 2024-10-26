@@ -3,7 +3,7 @@ import streamlit
 PATH = 'todos.txt'
 
 
-def read_todos_txt_file(file_path=PATH):
+def read_todos_txt_file(file_path='todos.txt'):
     try:  # Try to read the file
         """ Read the todos.txt file and return the content as a list of strings. """
         with open(file_path, 'r') as file_local:
