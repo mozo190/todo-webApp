@@ -13,6 +13,11 @@ st.subheader('A simple ToDo app to keep track of your tasks')
 st.write('Welcome to the Web ToDo App!')
 
 for todo in todos:
-    st.checkbox(todo)
+    checkbox = st.checkbox(todo, key=todo)
+    if checkbox:  # If the checkbox is checked
+        todos.remove(todo)
+        functions.write_into_todos_txt_file(todos)
+        st.write(f'Task "{todo}" is completed!')
+
 
 st.text_input(label='Add a new task', on_change=functions.add_todo, key='new_todo')
