@@ -10,6 +10,8 @@ def read_todos_txt_file(file_path=PATH):
             todos_local = file_local.readlines()
         return todos_local
     except FileNotFoundError:
+        with open(file_path, 'w') as file_local:
+            pass
         return []
 
 
