@@ -4,10 +4,13 @@ PATH = 'todos.txt'
 
 
 def read_todos_txt_file(file_path=PATH):
-    """ Read the todos.txt file and return the content as a list of strings. """
-    with open(file_path, 'r') as file_local:
-        todos_local = file_local.readlines()
-    return todos_local
+    try:  # Try to read the file
+        """ Read the todos.txt file and return the content as a list of strings. """
+        with open(file_path, 'r') as file_local:
+            todos_local = file_local.readlines()
+        return todos_local
+    except FileNotFoundError:
+        return []
 
 
 def write_into_todos_txt_file(todos, path=PATH):
