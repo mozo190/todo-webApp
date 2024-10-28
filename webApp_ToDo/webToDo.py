@@ -10,7 +10,7 @@ if "new_todo" not in st.session_state:
 
 st.title('Web ToDo App')
 st.subheader('A simple ToDo app to keep track of your tasks')
-st.write('Welcome to the Web ToDo App!')
+st.write('Welcome to the Web <u><b>ToDo App!</b></u>', unsafe_allow_html=True)
 
 st.text_input(label='Add a new task', on_change=functions.add_todo, key='new_todo')
 
