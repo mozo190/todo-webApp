@@ -7,6 +7,12 @@ st.subheader('Upload an image and convert it to grayscale')
 # Upload the image
 uploaded_image = st.file_uploader('Choose an image', type=['jpg', 'jpeg', 'png'])
 
+if uploaded_image:
+    img = Image.open(uploaded_image)
+    st.image(img)
+
+    grey_img = img.convert('L')
+    st.image(grey_img)
 
 with st.expander('Show webcam'):
     # Start the webcam
