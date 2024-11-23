@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(page_title="The best company", page_icon="🧊", layout="wide")
 
@@ -12,5 +13,10 @@ st.subheader("Our Team")
 
 col1, empty_col, col2, empty_col2, col3 = st.columns([1, 0.5, 1, 0.5, 1])
 
+df = pd.read_csv('data.csv', sep=';')
+
 with col1:
-    st.header
+    st.header(df['first name']+df['last name'])
+    st.write(df['role'])
+    st.image("images/" + df['image'])
+
