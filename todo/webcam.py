@@ -1,9 +1,10 @@
 import streamlit as st
 from PIL import Image
 
-# Start the webcam
-camera_image = st.camera_input('Please take a picture')
-print(camera_image)
+with st.expander('Show webcam'):
+    # Start the webcam
+    camera_image = st.camera_input('Please take a picture')
+
 
 if camera_image:
     # Display the image
