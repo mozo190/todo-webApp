@@ -13,10 +13,11 @@ st.subheader("Our Team")
 
 col1, empty_col, col2, empty_col2, col3 = st.columns([1, 0.5, 1, 0.5, 1])
 
-df = pd.read_csv('data.csv', sep=';')
+df = pd.read_csv('data.csv', sep=',')
 
 with col1:
-    st.header(df['first name']+df['last name'])
-    st.write(df['role'])
-    st.image("images/" + df['image'])
+    for i, row in df[:2].iterrows():
+        st.header(row['first name'] + " " + row['last name'])
+        st.write(df['role'])
+        st.image("images/" + df['image'])
 
