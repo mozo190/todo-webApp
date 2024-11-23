@@ -19,7 +19,7 @@ with col2:
 st.write("Below you can find some of the apps I have created in Python. Feel free to contact me.")
 
 
-col3, col4 = st.columns(2)
+col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5]) # 3 columns
 df = pd.read_csv('data.csv', sep=';')
 
 # Add images to the dataframe
