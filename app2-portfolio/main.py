@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(page_title="Zoltan Molnar", page_icon="🧊", layout="wide")
 col1, col2 = st.columns(2)
@@ -16,3 +17,20 @@ with col2:
     st.info(content)
 
 st.write("Below you can find some of the apps I have created in Python. Feel free to contact me.")
+
+
+col3, col4 = st.columns(2)
+df = pd.read_csv('data.csv', sep=';')
+with col3:
+    for i, row in df[:10].iterrows():
+        st.header(f"## {row['title']}")
+        st.write(row['description'])
+        st.image(row['image'])
+        st.write(row['url'])
+
+with col4:
+    for i, row in df[10:].iterrows():
+        st.header(f"## {row['title']}")
+        st.write(row['description'])
+        st.image(row['image'])
+        st.write(row['url'])
