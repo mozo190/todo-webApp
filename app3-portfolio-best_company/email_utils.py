@@ -7,7 +7,7 @@ def send_email(message):
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
     username = "mozo37@gmail.com"  # Enter your address
-    password = "....."  # Enter your password
+    password = "EMAIL_PASSWORD"  # Enter your password
 
     receiver_email = "mozo37@gmail.com"  # Enter receiver address
 
