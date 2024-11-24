@@ -1,4 +1,5 @@
 import streamlit as st
+from email import send_email
 
 st.set_page_config(page_title="Contact Us", page_icon="🧊", layout="wide")
 
