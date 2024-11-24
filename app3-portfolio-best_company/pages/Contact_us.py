@@ -11,5 +11,14 @@ with st.form(key='my_form'):
     message = st.text_area("Write your message here")
     submit = st.form_submit_button("Submit")
 
+    message_to_you = f"""\
+    Subject: {select_subject}
+    
+    From: {name} ({email})
+    {message}
+    Buy!
+    """
+
     if submit:
+        send_email(message_to_you)
         st.info("Your message has been sent!")
