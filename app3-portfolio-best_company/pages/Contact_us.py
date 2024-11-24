@@ -17,7 +17,10 @@ with st.form(key='my_form'):
     Subject: {select_subject}
     
     From: {name} ({email})
+    
+    
     {message}
+    
     Buy!
     """
 
