@@ -1,5 +1,4 @@
 import streamlit as st
-from PIL.TiffTags import ASCII
 
 from send_email import send_email
 
