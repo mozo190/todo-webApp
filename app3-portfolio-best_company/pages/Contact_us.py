@@ -7,7 +7,7 @@ st.title("Contact Us")
 
 with st.form(key='my_form'):
     name = st.text_input("Name")
-    select_subject = st.selectbox("Subject", ["Job Inquiry", "Proposal", "Other"])
+    select_subject = st.selectbox("What topic do you want to discuss?", ["Job Inquiry", "Project Proposal", "Other"])
     email = st.text_input("Email")
     message = st.text_area("Write your message here")
     submit = st.form_submit_button("Submit")
