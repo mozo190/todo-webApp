@@ -36,5 +36,12 @@ pdf.cell(65, 10, txt="", border=1, align='L')
 pdf.cell(25, 10, txt="", border=1, align='L')
 pdf.cell(35, 10, txt="", border=1, align='L')
 pdf.cell(40, 10, txt=str(f"{big_total}"), border=1, align='C')
+pdf.ln()
+pdf.ln()
+
+pdf.cell(0, 10, txt=f"The total due amount is {big_total} Euros.", border=0, align='R')
+pdf.ln()
+pdf.cell(0, 10, txt=f"Please transfer the amount to the following bank account: 1234567890", border=0, align='R')
+
 
 pdf.output("output.pdf")
