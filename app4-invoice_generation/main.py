@@ -13,10 +13,11 @@ for file in glob.glob("invoices/*.xlsx"):
     pdf.add_page()
     filename = Path(file).stem
     invoice_nr = filename.split("-")[0]
+    invoice_date = filename.split("-")[1]
     pdf.set_font("Arial", size=16, style='B')
     pdf.set_text_color(100, 100, 100)
     pdf.cell(100, 12, txt=f"Invoice nr. {invoice_nr}", ln=True, align='L')
-    pdf.cell(0, 12, txt=f"Date: 2023.1.18", ln=True, align='L')
+    pdf.cell(0, 12, txt=f"Date: {invoice_date}", ln=True, align='L')
 
 pdf.set_font("Times", size=12, style='B')
 pdf.cell(25, 10, txt=f"Product ID", border=1, align='L')
