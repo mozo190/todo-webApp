@@ -2,10 +2,13 @@ import os.path
 
 import pandas as pd
 from fpdf import FPDF
+import glob
 
 pdf = FPDF(orientation='P', unit='mm', format='A4')
 pdf.set_auto_page_break(auto=False, margin=0)
-df = pd.read_excel("invoices/10001-2023.1.18.xlsx", engine='openpyxl')
+
+for file in glob.glob("invoices/*.xlsx"):
+    df = pd.read_excel(file, engine='openpyxl')
 
 pdf.add_page()
 pdf.set_font("Arial", size=16, style='B')
