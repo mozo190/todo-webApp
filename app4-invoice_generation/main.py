@@ -1,3 +1,5 @@
+import os.path
+
 import pandas as pd
 from fpdf import FPDF
 
@@ -41,7 +43,7 @@ pdf.ln()
 
 pdf.cell(0, 10, txt=f"The total due amount is {big_total} Euros.", border=0, align='R')
 pdf.ln()
+pdf.image("py.png", x=pdf.get_x() + 83, y=pdf.get_y(), w=6)
 pdf.cell(0, 10, txt=f"Please transfer the amount to the following bank account: 1234567890", border=0, align='R')
 
-
-pdf.output("output.pdf")
+pdf.output("10001-2023.1.18.pdf")
