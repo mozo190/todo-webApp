@@ -6,7 +6,9 @@ from pathlib import Path
 pdf = FPDF(orientation='P', unit='mm', format='A4')
 pdf.set_auto_page_break(auto=False, margin=0)
 
-for file in glob.glob("files/*.txt"):
+filepath = glob.glob("files/*.txt")
+
+for file in filepath:
     with open(file, "r") as f:
         text = f.read()
 
