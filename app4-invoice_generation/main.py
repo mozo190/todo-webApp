@@ -3,18 +3,20 @@ import os.path
 import pandas as pd
 from fpdf import FPDF
 import glob
+from pathlib import Path
 
-pdf = FPDF(orientation='P', unit='mm', format='A4')
-pdf.set_auto_page_break(auto=False, margin=0)
 
 for file in glob.glob("invoices/*.xlsx"):
     df = pd.read_excel(file, engine='openpyxl')
-
-pdf.add_page()
-pdf.set_font("Arial", size=16, style='B')
-pdf.set_text_color(100, 100, 100)
-pdf.cell(100, 12, txt=f"Invoice nr. 10001", ln=True, align='L')
-pdf.cell(0, 12, txt=f"Date: 2023.1.18", ln=True, align='L')
+    pdf = FPDF(orientation='P', unit='mm', format='A4')
+    pdf.set_auto_page_break(auto=False, margin=0)
+    pdf.add_page()
+    filename = Path(file).stem
+    invoice_nr = filename.split("-")[0]
+    pdf.set_font("Arial", size=16, style='B')
+    pdf.set_text_color(100, 100, 100)
+    pdf.cell(100, 12, txt=f"Invoice nr. {invoice_nr}", ln=True, align='L')
+    pdf.cell(0, 12, txt=f"Date: 2023.1.18", ln=True, align='L')
 
 pdf.set_font("Times", size=12, style='B')
 pdf.cell(25, 10, txt=f"Product ID", border=1, align='L')
