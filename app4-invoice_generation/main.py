@@ -22,12 +22,13 @@ for file in glob.glob("invoices/*.xlsx"):
     pdf.output(f"PDFs/{filename}.pdf")
 
     columns = list(df.columns)
+    columns = [column.replace("_", " ").title() for column in columns]
     pdf.set_font("Times", size=12, style='B')
-    pdf.cell(25, 10, txt=columns[0].replace("_", " "), border=1, align='L')
-    pdf.cell(65, 10, txt=columns[1].replace("_", " "), border=1, align='L')
-    pdf.cell(25, 10, txt=columns[2].replace("_", " "), border=1, align='L')
-    pdf.cell(35, 10, txt=columns[3].replace("_", " "), border=1, align='L')
-    pdf.cell(40, 10, txt=columns[4].replace("_", " "), border=1, align='L')
+    pdf.cell(25, 10, txt=columns[0], border=1, align='L')
+    pdf.cell(65, 10, txt=columns[1], border=1, align='L')
+    pdf.cell(25, 10, txt=columns[2], border=1, align='L')
+    pdf.cell(35, 10, txt=columns[3], border=1, align='L')
+    pdf.cell(40, 10, txt=columns[4], border=1, align='L')
     pdf.ln()
 
     for i, row in df.iterrows():
