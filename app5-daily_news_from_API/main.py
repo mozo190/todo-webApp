@@ -1,4 +1,5 @@
 import requests
+
 from data import NEWS_API_URL, NEWS_API_KEY, E_MAIL
 from send_email import send_email
 
