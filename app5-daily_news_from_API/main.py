@@ -5,5 +5,9 @@ api = NEWS_API_KEY
 url = NEWS_API_URL
 
 request = requests.get(url)
-content = request.text
-print(content)
+content = request.json()
+for i in content['articles']:
+    print(i['title'])
+    print(i['description'])
+    print(i['url'])
+    print()
