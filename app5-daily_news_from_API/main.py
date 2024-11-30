@@ -10,9 +10,9 @@ request = requests.get(url)
 content = request.json()
 
 body = ""
-for i in content['articles']:
+for i in content['articles'][:20]:
     if i['title'] and i['description'] and i['url'] is not None:
-        body += i['title'] + '\n' + i['description'] + '\n' + i['url'] + '\n\n'
+        body = 'Subject: today"s news' + body + i['title'] + '\n' + i['description'] + '\n' + i['url'] + '\n\n'
 
 body = body.encode('utf-8')
 send_email(body, E_MAIL)
