@@ -1,5 +1,6 @@
-import streamlit as st
 import requests
+import streamlit as st
+
 from data import URL
 
 st.set_page_config(page_title="Astronaut picture", page_icon="🧊", layout="wide")
@@ -13,9 +14,6 @@ else:
     st.error("Failed to load data")
     image_url = None
     description = "No description available"
-
-
-# content = """Lorem ipsum dolor sit amet, consectetur adipiscing elit."""
 
 st.title("Astronaut picture")
 if image_url:
