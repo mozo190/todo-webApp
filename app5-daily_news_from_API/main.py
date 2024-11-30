@@ -10,7 +10,7 @@ request = requests.get(url)
 content = request.json()
 
 body = ""
-for i in content['articles'][:20]:
+for i in content['articles']:
     if i['title'] and i['description'] and i['url'] is not None:
         body = 'Subject: today"s news' + body + i['title'] + '\n' + i['description'] + '\n' + i['url'] + '\n\n'
 
