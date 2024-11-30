@@ -3,7 +3,7 @@ import streamlit as st
 
 from data import URL
 
-st.set_page_config(page_title="Astronaut picture", page_icon="🧊", layout="wide")
+st.set_page_config(page_title="Astronaut picture", page_icon="🚀", layout="wide")
 
 response = requests.get(URL)
 if response.status_code == 200:
