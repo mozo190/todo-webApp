@@ -8,9 +8,12 @@ def home():
     return render_template("home.html")
 
 
-@app.route('/about')
-def about():
-    return render_template("about.html")
+@app.route('/api/v1/<station>/<date>')
+def about(station, date):
+    temperature = 25
+    return {f"Station": station,
+            f"Date": date,
+            f"Temperature": temperature}
 
 
 @app.route('/contact')
