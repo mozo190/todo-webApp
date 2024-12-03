@@ -1,9 +1,10 @@
-from flask import Flask, render_template
 import pandas as pd
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 stations = pd.read_csv("data_small/stations.txt", skiprows=17)
+
 
 @app.route('/')
 def home():
@@ -27,14 +28,17 @@ def all_data(station):
     return {f"Station": station,
             f"Data": df.to_dict(orient="records")}
 
-@app.route('/api/v1/<station>/<year>')
+
+@app.route('/api/v1/yearly/<station>/<year>')
 def year_data(station, year):
     filename = "data_small/TG_STAID" + str(station).zfill(6) + ".txt"
-    df = pd.read_csv(filename, skiprows=20, parse_dates=["    DATE"])
-    df = df.loc[df['    DATE'].dt.year == int(year)]
+    df = pd.read_csv(filename, skiprows=20)
+    df["    DATE"] = df['    DATE'].astype(str)
+    result = df[df["    DATE"].str.startswith(str(year))]
     return {f"Station": station,
             f"Year": year,
-            f"Data": df.to_dict(orient="records")}
+            f"Data": result.to_dict(orient="records")}
+
 
 if __name__ == '__main__':
     app.run(debug=True)
