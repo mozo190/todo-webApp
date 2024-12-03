@@ -20,10 +20,21 @@ def about(station, date):
             f"Temperature": temperature}
 
 
-@app.route('/contact')
-def contact():
-    return render_template("contact.html")
+@app.route('/api/v1/<station>')
+def all_data(station):
+    filename = "data_small/TG_STAID" + str(station).zfill(6) + ".txt"
+    df = pd.read_csv(filename, skiprows=20, parse_dates=["    DATE"])
+    return {f"Station": station,
+            f"Data": df.to_dict(orient="records")}
 
+@app.route('/api/v1/<station>/<year>')
+def year_data(station, year):
+    filename = "data_small/TG_STAID" + str(station).zfill(6) + ".txt"
+    df = pd.read_csv(filename, skiprows=20, parse_dates=["    DATE"])
+    df = df.loc[df['    DATE'].dt.year == int(year)]
+    return {f"Station": station,
+            f"Year": year,
+            f"Data": df.to_dict(orient="records")}
 
 if __name__ == '__main__':
     app.run(debug=True)
