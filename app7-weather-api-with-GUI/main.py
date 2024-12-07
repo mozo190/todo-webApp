@@ -45,6 +45,6 @@ if place.strip():
         else:
             st.error('No data found for the given place.')
     except Exception as e:
-        st.error(f'An error occurred while fetching the data. {e}')
+        st.error(f'An error occurred while fetching the data. Not exist Name of place. {e}')
 else:
     st.error('Please enter a place name.')
