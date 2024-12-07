@@ -10,8 +10,9 @@ def get_data(place, forecast_days=None):
     responses = requests.get(url)
     data = responses.json()
     filtered_data = data['list'][:forecast_days * 8]
+    print(filtered_data)
     return filtered_data
 
 
 if __name__ == '__main__':
-    print(get_data('Mumbai', 3))
+    print(get_data('Tokyo', 3))
