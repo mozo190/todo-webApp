@@ -8,7 +8,7 @@ st.title("Simple Monitor Detection Web App")
 
 video_button = st.button("Start Video")
 
-locale.setlocale(locale.LC_TIME, 'hu_HU.UTF-8')
+locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
 
 if video_button:
     streamlit_image = st.image([])
@@ -22,7 +22,7 @@ if video_button:
 
         # Get dynamically the current date and time
         current_time = datetime.now()
-        present_day = current_time.strftime("%A")
+        present_day = current_time.strftime("%A").title()
         present_date = current_time.strftime("%Y-%m-%d")
         present_time = current_time.strftime("%H:%M:%S")
 
