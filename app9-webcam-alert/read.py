@@ -1,4 +1,7 @@
+import glob
 import time
+import os
+from threading import Thread
 
 import cv2
 
@@ -11,11 +14,18 @@ first_frame = None
 status_list = []
 count = 1
 
+def clean_folder():
+    images = glob.glob("images/*.png")
+    for image in images:
+        try:
+            os.remove(image)
+        except Exception as e:
+            print(f"Error: {e}")
+
 while True:
     status = 0
     check, frame = video.read()
-    cv2.imwrite(f"images/{count}.png", frame)
-    count += 1
+
     gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     gray_frame_gau = cv2.GaussianBlur(gray_frame, (21, 21), 0)
 
@@ -39,16 +49,24 @@ while True:
 
         if rectangle.any():
             status = 1
-            send_email()
+            cv2.imwrite(f"images/{count}.png", frame)
+            count += 1
+            all_img = glob.glob("images/*.png")
+            index = int(len(all_img) / 2)
+            image_with_object = all_img[index]
+            # send_email(image=var)
 
     status_list.append(status)
-    status_list = status_list[-2:] # Keep only the last two elements
+    status_list = status_list[-2:]  # Keep only the last two elements
 
     if status_list[-2:] == [0, 1]:
-        cv2.putText(frame, "Movement detected", (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-    else:
-        cv2.putText(frame, "No movement", (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        email_thread = Thread(target=send_email, args=(image_with_object, ))
+        email_thread.daemon = True
+        clean_thread = Thread(target=clean_folder())
+        clean_thread.daemon = True
 
+        email_thread.start()
+        clean_thread.start()
 
     cv2.imshow("Video", frame)
     key = cv2.waitKey(1)
