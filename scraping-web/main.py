@@ -25,9 +25,16 @@ def send_email():
     print("Sending email")
 
 
+def store(extracted_data):
+    with open('data.txt', 'a') as file:
+        file.write(extracted_data + '\n')
+
+
 if __name__ == "__main__":
     scraped = scrape(PAGE_URL)
     extracted = extract_data(scraped)
     print(extracted)
+    store(extracted)
     if extracted != "No Upcoming tours":
-        send_email()
+        if extracted not in "data.txt":
+            send_email()
