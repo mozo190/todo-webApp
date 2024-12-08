@@ -1,7 +1,7 @@
 import locale
+from datetime import datetime
 
 import cv2
-from datetime import datetime
 import streamlit as st
 
 st.title("Simple Monitor Detection Web App")
@@ -33,7 +33,7 @@ if video_button:
                     org=(10, 20),
                     fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=0.5,
-                    color=(20, 100, 250),
+                    color=(255, 255, 250),
                     thickness=1,
                     lineType=cv2.LINE_AA
                     )
@@ -42,7 +42,7 @@ if video_button:
                     org=(10, 40),
                     fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=0.6,
-                    color=(20, 100, 200),
+                    color=(255, 0, 0),
                     thickness=1,
                     lineType=cv2.LINE_AA
                     )
@@ -51,9 +51,8 @@ if video_button:
                     org=(10, 60),
                     fontFace=cv2.FONT_HERSHEY_SIMPLEX,
                     fontScale=0.6,
-                    color=(20, 100, 200),
+                    color=(255, 0, 0),
                     thickness=1,
                     lineType=cv2.LINE_AA)
-
 
         streamlit_image.image(frame)
