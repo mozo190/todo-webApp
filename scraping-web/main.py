@@ -7,6 +7,7 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
 }
 
+
 # Scraping the data
 def scrape(url):
     response = requests.get(url, headers=HEADERS)
@@ -20,7 +21,13 @@ def extract_data(source_):
     return data
 
 
+def send_email():
+    print("Sending email")
+
+
 if __name__ == "__main__":
     scraped = scrape(PAGE_URL)
     extracted = extract_data(scraped)
     print(extracted)
+    if extracted != "No Upcoming tours":
+        send_email()
