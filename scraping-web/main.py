@@ -1,4 +1,5 @@
 import ssl
+import time
 
 import requests
 import selectorlib
@@ -52,12 +53,14 @@ def read_data(extracted_data):
 
 
 if __name__ == "__main__":
-    scraped = scrape(PAGE_URL)
-    extracted = extract_data(scraped)
-    print(extracted)
+    while True:
+        scraped = scrape(PAGE_URL)
+        extracted = extract_data(scraped)
+        print(extracted)
 
-    content = read_data(extracted)
-    if extracted != "No Upcoming tours":
-        if extracted not in content:
-            store(extracted)
-            send_email(message="New events was found")
+        content = read_data(extracted)
+        if extracted != "No Upcoming tours":
+            if extracted not in content:
+                store(extracted)
+                send_email(message="New events was found")
+        time.sleep(2)
