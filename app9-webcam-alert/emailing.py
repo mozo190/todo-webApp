@@ -2,7 +2,7 @@ import imghdr
 import smtplib
 from email.message import EmailMessage
 
-PASSWORD = "password"
+PASSWORD = "prvwzuwsgxjfubht "
 EMAIL_ = "mozo37@gmail.com"
 to_email = "mozo37@gmail.com"
 
