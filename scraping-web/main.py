@@ -62,9 +62,13 @@ def store(extracted_data):
 def read_data(extracted_data):
     # with open('data.txt', 'r') as file:
     #     return file.read()
-    row = extracted_data.split(',')
-    row = [x.strip() for x in row]
-    band, city, date = row
+    row_read = extracted_data.split(',')
+    row_read = [x.strip() for x in row_read]
+
+    if len(row_read) != 3:
+        return "No Upcoming tours"
+
+    band, city, date = row_read
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM events WHERE band=? AND city=? AND date=?",
                    (band, city, date))
