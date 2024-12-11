@@ -50,8 +50,13 @@ def send_email(message):
 
 
 def store(extracted_data):
-    with open('data.txt', 'a') as file:
-        file.write(extracted_data + '\n')
+    # with open('data.txt', 'a') as file:
+    #     file.write(extracted_data + '\n')
+    row = extracted_data.split(',')
+    row = [x.strip() for x in row]
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO events VALUES (?, ?, ?)", row)
+    connection.commit()
 
 
 def read_data(extracted_data):
@@ -59,9 +64,12 @@ def read_data(extracted_data):
     #     return file.read()
     row = extracted_data.split(',')
     row = [x.strip() for x in row]
+    band, city, date = row
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM events WHERE date=?", (row[2],))
+    cursor.execute("SELECT * FROM events WHERE band=? AND city=? AND date=?",
+                   (band, city, date))
     rows = cursor.fetchall()
+    print(rows)
     return rows
 
 
@@ -71,9 +79,9 @@ if __name__ == "__main__":
         extracted = extract_data(scraped)
         print(extracted)
 
-        content = read_data(extracted)
         if extracted != "No Upcoming tours":
-            if extracted not in content:
+            row = read_data(extracted)
+            if not row:
                 store(extracted)
                 send_email(message="New events was found")
         time.sleep(2)
