@@ -8,7 +8,6 @@ import sqlite3
 
 # Connecting to the database
 connection = sqlite3.connect('data.db')
-cursor = connection.cursor()
 
 "INSERT INTO events VALUES ('Tigers', 'Tiger City', '2021.10.10')"
 "SELECT * FROM events WHERE date='2088.05.06'"
@@ -60,10 +59,10 @@ def read_data(extracted_data):
     #     return file.read()
     row = extracted_data.split(',')
     row = [x.strip() for x in row]
-
+    cursor = connection.cursor()
     cursor.execute("SELECT * FROM events WHERE date=?", (row[2],))
     rows = cursor.fetchall()
-    return row
+    return rows
 
 
 if __name__ == "__main__":
