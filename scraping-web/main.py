@@ -1,9 +1,17 @@
+import smtplib
 import ssl
 import time
 
 import requests
 import selectorlib
-import smtplib
+import sqlite3
+
+# Connecting to the database
+connection = sqlite3.connect('data.db')
+cursor = connection.cursor()
+
+"INSERT INTO events VALUES ('Tigers', 'Tiger City', '2021.10.10')"
+"SELECT * FROM events WHERE date='2088.05.06'"
 
 PASSWORD = "password"
 EMAIL_ = "mozo37@gmail.com"
@@ -30,16 +38,16 @@ def extract_data(source_):
 
 
 def send_email(message):
-    host = "smtp.gmail.com"
-    port = 465
-
-    context = ssl.create_default_context()
-
-    with smtplib.SMTP_SSL(host, port, context=context) as server:
-        server.login(EMAIL_, PASSWORD)
-
-        server.sendmail(EMAIL_, to_email, message)
-        print("Email sent successfully")
+    # host = "smtp.gmail.com"
+    # port = 465
+    #
+    # context = ssl.create_default_context()
+    #
+    # with smtplib.SMTP_SSL(host, port, context=context) as server:
+    #     server.login(EMAIL_, PASSWORD)
+    #
+    #     server.sendmail(EMAIL_, to_email, message)
+    print("Email sent successfully")
 
 
 def store(extracted_data):
@@ -48,8 +56,14 @@ def store(extracted_data):
 
 
 def read_data(extracted_data):
-    with open('data.txt', 'r') as file:
-        return file.read()
+    # with open('data.txt', 'r') as file:
+    #     return file.read()
+    row = extracted_data.split(',')
+    row = [x.strip() for x in row]
+
+    cursor.execute("SELECT * FROM events WHERE date=?", (row[2],))
+    rows = cursor.fetchall()
+    return row
 
 
 if __name__ == "__main__":
