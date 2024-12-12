@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('hotels.csv')
+df = pd.read_csv('hotels.csv', dtype={'id': str})
 
 
 class Hotel:
@@ -9,10 +9,13 @@ class Hotel:
         print("Hotel object created")
 
     def book(self):
-        print("Booking hotel")
+        """Book a hotel room by changing the availability status"""
+        df.loc[df['id'] == self.hotel_id, 'available'] = "no"
+        df.to_csv('hotels.csv', index=False)
 
     def available_rooms(self):
-        availability = df.loc[df['hotel_id'] == self.hotel_id, 'available'].squeeze()
+        """Check if rooms are available"""
+        availability = df.loc[df['id'] == self.hotel_id, 'available'].squeeze()
         if availability:
             return True
         else:
