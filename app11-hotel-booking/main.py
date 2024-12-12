@@ -7,7 +7,6 @@ class Hotel:
     def __init__(self, hotel_id):
         self.hotel_id = hotel_id
         self.name = df.loc[df['id'] == self.hotel_id, 'name'].squeeze()
-        print("Hotel object created")
 
     def book(self):
         """Book a hotel room by changing the availability status"""
@@ -17,7 +16,7 @@ class Hotel:
     def available_rooms(self):
         """Check if rooms are available"""
         availability = df.loc[df['id'] == self.hotel_id, 'available'].squeeze()
-        if availability:
+        if availability == "yes":
             return True
         else:
             return False
@@ -43,6 +42,7 @@ class ReservationTicket:
         content = (f"Thank you for your reservation"
                    f" {self.customer_name} "
                    f"at {self.hotel_object.name}")
+        return content
 
 
 print(df)
