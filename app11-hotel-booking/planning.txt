@@ -1,0 +1,25 @@
+User can see a list of hotels
+User can book a hotel
+User can get a reservation ticket
+User can cancel a reservation
+User can see a list of reservations
+User can see a list of available rooms
+User can see a list of booked rooms
+User can see a list of rooms
+User can see a list of room types
+User can see a list of room prices
+User can see a list of room availability
+User can see a list of room bookings
+User can see a list of room reservations
+User can see a list of room types
+
+Classes:
+Hotel
+User
+Reservation
+Room
+RoomType
+RoomPrice
+RoomAvailability
+RoomBooking
+RoomReservation
