@@ -39,9 +39,10 @@ class ReservationTicket:
         print("Reservation ticket created")
 
     def generate(self):
-        content = (f"Thank you for your reservation"
-                   f" {self.customer_name} "
-                   f"at {self.hotel_object.name}")
+        content = (f"""
+                    Thank you for your reservation {self.customer_name} 
+                    at {self.hotel_object.name}"""
+                   )
         return content
 
 
