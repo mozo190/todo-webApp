@@ -4,15 +4,19 @@ df = pd.read_csv('hotels.csv')
 
 
 class Hotel:
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, hotel_id):
+        self.hotel_id = hotel_id
         print("Hotel object created")
 
     def book(self):
         print("Booking hotel")
 
     def available_rooms(self):
-        print("Checking available rooms")
+        availability = df.loc[df['hotel_id'] == self.hotel_id, 'available'].squeeze()
+        if availability:
+            return True
+        else:
+            return False
 
 
 class Reservation:
@@ -36,11 +40,13 @@ class ReservationTicket:
 
 
 print(df)
-id = input("Enter hotel id: ")
-hotel = Hotel(id)
+hotel_id = input("Enter hotel id: ")
+hotel = Hotel(hotel_id)
 
 if hotel.available_rooms():
     hotel.book()
     customer_name = input("Enter customer name: ")
     reservation_ticket = ReservationTicket(customer_name, hotel)
     print(reservation_ticket.generate())
+else:
+    print("No rooms available")
