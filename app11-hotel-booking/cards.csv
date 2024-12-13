@@ -1,0 +1,3 @@
+number,expiration_date,holder,cvc
+"1234567890123456","12/12","JOHN SMITH","123"
+"5678","12/28","JANE SMITH","456"
