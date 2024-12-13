@@ -55,6 +55,10 @@ class CreditCard:
                     "expiration_date": expiration_date,
                     "holder": holder,
                     "cvc": cvc}
+        if card_data in df_card:
+            return True
+        else:
+            return False
         
 
 print(df)
@@ -62,8 +66,8 @@ hotel_id = input("Enter hotel id: ")
 hotel = Hotel(hotel_id)
 
 if hotel.available_rooms():
-    credit_card = CreditCard(number="number", expiration_date:"expiration_date", holder:"holder", cvc:"cvc")
-    if credit_card.validate():
+    credit_card = CreditCard(number="1234567890123456")
+    if credit_card.validate(expiration_date="12/12", holder="John Doe", cvc="123"):
         hotel.book()
         name = input("Enter customer name: ")
         reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
