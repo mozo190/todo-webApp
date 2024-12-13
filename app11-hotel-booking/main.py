@@ -1,7 +1,7 @@
 import pandas as pd
 
 df = pd.read_csv('hotels.csv', dtype={'id': str})
-
+df_card = pd.read_csv('cards.csv', dtype=str)
 
 class Hotel:
     def __init__(self, hotel_id):
