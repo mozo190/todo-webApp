@@ -46,14 +46,29 @@ class ReservationTicket:
         return content
 
 
+class CreditCard:
+    def __init__(self, number):
+        self.number = number
+
+    def validate(self, expiration_date, holder, cvc):
+        card_data = {"number":self.number,
+                    "expiration_date": expiration_date,
+                    "holder": holder,
+                    "cvc": cvc}
+        
+
 print(df)
 hotel_id = input("Enter hotel id: ")
 hotel = Hotel(hotel_id)
 
 if hotel.available_rooms():
-    hotel.book()
-    name = input("Enter customer name: ")
-    reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
-    print(reservation_ticket.generate())
+    credit_card = CreditCard(number="number", expiration_date:"expiration_date", holder:"holder", cvc:"cvc")
+    if credit_card.validate():
+        hotel.book()
+        name = input("Enter customer name: ")
+        reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
+        print(reservation_ticket.generate())
+    else:
+        print("No valid creditcard!")
 else:
     print("No rooms available")
