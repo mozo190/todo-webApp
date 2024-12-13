@@ -66,10 +66,13 @@ hotel = Hotel(hotel_id)
 if hotel.available_rooms():
     credit_card = CreditCardSecurity(number="1234567890123456")
     if credit_card.validate(expiration_date="12/12", holder="JOHN SMITH", cvc="123"):
-        hotel.book()
-        name = input("Enter customer name: ")
-        reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
-        print(reservation_ticket.generate())
+        if credit_card.authenticate(given_password="mypass"):
+            hotel.book()
+            name = input("Enter customer name: ")
+            reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
+            print(reservation_ticket.generate())
+        else:
+            print("Wrong password!")
     else:
         print("No valid creditcard!")
 else:
