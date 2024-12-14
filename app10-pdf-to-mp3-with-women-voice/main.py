@@ -30,12 +30,12 @@ def extract_text_from_pdf(pdf_file, audio_file, lang='en', slow=False):
 
 
 if __name__ == "__main__":
-    pdf_file = input("Enter the path to the PDF file: ").strip()
+    pdf_file = input("Enter the path to the PDF file: ").strip('"')
     audio_file = input("Enter the name of the audio file (e.g., output.mp3): ").strip()
 
-    if not pdf_file.endswith('.pdf'):
+    if not pdf_file.lower().endswith('.pdf'):
         print("Error: Please provide a PDF file.")
-    elif not audio_file.endswith('.mp3'):
+    elif not audio_file.lower().endswith('.mp3'):
         print("Error: Please provide an MP3 file as the output.")
     else:
         extract_text_from_pdf(pdf_file, audio_file)
