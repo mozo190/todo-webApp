@@ -2,7 +2,7 @@ import pandas as pd
 
 df = pd.read_csv('hotels.csv', dtype={'id': str})
 df_card = pd.read_csv('cards.csv', dtype=str).to_dict(orient='records')
-df_cards_security = pd.read_csv('cards_security.csv', dtype=str)
+df_cards_security = pd.read_csv('card_security.csv', dtype=str)
 
 
 class Hotel:
@@ -55,7 +55,7 @@ class CreditCard:
 
 class CreditCardSecurity(CreditCard):
     def authenticate(self, given_password):
-        password = df_cards_security.loc[df['number'] == self.number, 'password'].squeeze()
+        password = df_cards_security.loc[df_cards_security['number'] == self.number, 'password'].squeeze()
         return password == given_password
 
 
