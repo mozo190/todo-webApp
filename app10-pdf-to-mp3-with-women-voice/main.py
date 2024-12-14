@@ -40,6 +40,15 @@ def select_pdf():
     pdf_path_var.set(pdf_file)
 
 
+def select_output():
+    audio_file = filedialog.asksaveasfilename(
+        title="Choose the output audio file",
+        defaultextension=".mp3",
+        filetypes=[("MP3 files", "*.mp3")]
+    )
+    audio_path_var.set(audio_file)
+
+
 def convert_to_audio():
     pdf_file = input("Enter the path to the PDF file: ").strip('"')
     audio_file = input("Enter the name of the audio file (e.g., output.mp3): ").strip()
