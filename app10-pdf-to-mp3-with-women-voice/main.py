@@ -1,4 +1,7 @@
 import os
+import tkinter
+from tkinter import filedialog
+
 from PyPDF2 import PdfReader
 from gtts import gTTS
 
@@ -29,10 +32,17 @@ def extract_text_from_pdf(pdf_file, audio_file, lang='en', slow=False):
         print(f"An unknown error occurred: {e}")
 
 
-if __name__ == "__main__":
+def select_pdf():
+    pdf_file = filedialog.askopenfilename(
+        title="Select a PDF file",
+        filetypes=[("PDF files", "*.pdf")]
+    )
+    pdf_path_var.set(pdf_file)
+
+
+def convert_to_audio():
     pdf_file = input("Enter the path to the PDF file: ").strip('"')
     audio_file = input("Enter the name of the audio file (e.g., output.mp3): ").strip()
-
     if not pdf_file.lower().endswith('.pdf'):
         print("Error: Please provide a PDF file.")
     elif not audio_file.lower().endswith('.mp3'):
@@ -41,3 +51,9 @@ if __name__ == "__main__":
         extract_text_from_pdf(pdf_file, audio_file)
 
 
+if __name__ == "__main__":
+    root = tkinter.Tk()
+    root.title("PDF to Audio Converter")
+
+    pdf_path_var = tkinter.StringVar()
+    audio_path_var = tkinter.StringVar()
