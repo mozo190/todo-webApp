@@ -68,11 +68,11 @@ if __name__ == "__main__":
     audio_path_var = tkinter.StringVar()
 
     tkinter.Label(root, text="PDF File:").grid(row=0, column=0, padx=10, sticky='w')
-    tkinter.Entry(root, textvariable=audio_path_var, width=50).grid(row=0, column=1, padx=10, pady=10)
+    tkinter.Entry(root, textvariable=pdf_path_var, width=50).grid(row=0, column=1, padx=10, pady=10)
     tkinter.Button(root, text="Select PDF", command=select_pdf).grid(row=0, column=2, padx=10, pady=10)
 
     tkinter.Label(root, text="Audio File:").grid(row=1, column=0, padx=10, sticky='w')
-    tkinter.Entry(root, textvariable=select_output, width=50).grid(row=1, column=1, padx=10, pady=10)
+    tkinter.Entry(root, textvariable=audio_path_var, width=50).grid(row=1, column=1, padx=10, pady=10)
     tkinter.Button(root, text="Select Output", command=select_output).grid(row=1, column=2, padx=10, pady=10)
 
     root.mainloop()
