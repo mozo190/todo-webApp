@@ -75,4 +75,10 @@ if __name__ == "__main__":
     tkinter.Entry(root, textvariable=audio_path_var, width=50).grid(row=1, column=1, padx=10, pady=10)
     tkinter.Button(root, text="Select Output", command=select_output).grid(row=1, column=2, padx=10, pady=10)
 
+    tkinter.Button(root,
+                   text="Convert to Audio",
+                   command=convert_to_audio,
+                   bg='green',
+                   fg='white').grid(row=2, column=1, columnspan=3, pady=20)
+
     root.mainloop()
