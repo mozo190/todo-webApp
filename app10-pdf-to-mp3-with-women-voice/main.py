@@ -24,8 +24,9 @@ def extract_text_from_pdf(pdf_file, audio_file, lang='en', slow=False):
         tts.save(audio_file)
 
         messagebox.showinfo(f"Text extracted successfully from {pdf_file} and saved to {audio_file}")
+
     except FileNotFoundError as fnf_error:
-        messagebox.showerror(f"Error: {fnf_error}")
+        messagebox.showerror(f"Error: \n {fnf_error}")
     except ValueError as v_error:
         messagebox.showerror(f"Error: {v_error}")
     except Exception as e:
