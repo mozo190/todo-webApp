@@ -23,7 +23,7 @@ def extract_text_from_pdf(pdf_file, audio_file, lang='en', slow=False):
         tts = gTTS(text=text, lang=lang, slow=slow)
         tts.save(audio_file)
 
-        messagebox.showinfo(f"Text extracted from {pdf_file} and saved to {audio_file}")
+        messagebox.showinfo(f"Text extracted successfully from {pdf_file} and saved to {audio_file}")
     except FileNotFoundError as fnf_error:
         messagebox.showerror(f"Error: {fnf_error}")
     except ValueError as v_error:
@@ -50,8 +50,9 @@ def select_output():
 
 
 def convert_to_audio():
-    pdf_file = input("Enter the path to the PDF file: ").strip('"')
-    audio_file = input("Enter the name of the audio file (e.g., output.mp3): ").strip()
+    pdf_file = pdf_path_var.get().strip()
+    audio_file = audio_path_var.get().strip()
+
     if not pdf_file.lower().endswith('.pdf'):
         messagebox.showerror("Error: Please provide a PDF file.")
         return
