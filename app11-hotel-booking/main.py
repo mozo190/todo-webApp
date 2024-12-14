@@ -38,6 +38,16 @@ class ReservationTicket:
         return content
 
 
+class SpaTicket(ReservationTicket):
+    def generate(self):
+        content = (f"""
+                    Thank you for your SPA reservation {self.customer_name} !
+                    at {self.hotel_object.name}
+                    You have a free spa ticket!"""
+                   )
+        return content
+
+
 class CreditCard:
     def __init__(self, number):
         self.number = number
