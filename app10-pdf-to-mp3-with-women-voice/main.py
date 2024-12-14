@@ -1,6 +1,6 @@
 import os
 import tkinter
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 
 from PyPDF2 import PdfReader
 from gtts import gTTS
@@ -53,11 +53,14 @@ def convert_to_audio():
     pdf_file = input("Enter the path to the PDF file: ").strip('"')
     audio_file = input("Enter the name of the audio file (e.g., output.mp3): ").strip()
     if not pdf_file.lower().endswith('.pdf'):
-        print("Error: Please provide a PDF file.")
-    elif not audio_file.lower().endswith('.mp3'):
-        print("Error: Please provide an MP3 file as the output.")
-    else:
-        extract_text_from_pdf(pdf_file, audio_file)
+        messagebox.showerror("Error: Please provide a PDF file.")
+        return
+
+    if not audio_file.lower().endswith('.mp3'):
+        messagebox.showerror("Error: Please provide an MP3 file as the output.")
+        return
+
+    extract_text_from_pdf(pdf_file, audio_file)
 
 
 if __name__ == "__main__":
@@ -79,6 +82,6 @@ if __name__ == "__main__":
                    text="Convert to Audio",
                    command=convert_to_audio,
                    bg='green',
-                   fg='white').grid(row=2, column=1, columnspan=3, pady=20)
+                   fg='white').grid(row=2, column=0, columnspan=3, pady=20)
 
     root.mainloop()
