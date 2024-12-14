@@ -81,6 +81,12 @@ if hotel.available_rooms():
             name = input("Enter customer name: ")
             reservation_ticket = ReservationTicket(customer_name=name, hotel_object=hotel)
             print(reservation_ticket.generate())
+            spa = input("Do you want to book a SPA? (yes/no): ")
+            if spa == "yes":
+                spa_ticket = SpaTicket(customer_name=name, hotel_object=hotel)
+                print(spa_ticket.generate())
+            else:
+                print("No SPA booked, thank you!")
         else:
             print("Wrong password!")
     else:
