@@ -23,13 +23,13 @@ def extract_text_from_pdf(pdf_file, audio_file, lang='en', slow=False):
         tts = gTTS(text=text, lang=lang, slow=slow)
         tts.save(audio_file)
 
-        print(f"Text extracted from {pdf_file} and saved to {audio_file}")
+        messagebox.showinfo(f"Text extracted from {pdf_file} and saved to {audio_file}")
     except FileNotFoundError as fnf_error:
-        print(f"Error: {fnf_error}")
+        messagebox.showerror(f"Error: {fnf_error}")
     except ValueError as v_error:
-        print(f"Error: {v_error}")
+        messagebox.showerror(f"Error: {v_error}")
     except Exception as e:
-        print(f"An unknown error occurred: {e}")
+        messagebox.showerror(f"Unknown error occurred: {e}")
 
 
 def select_pdf():
