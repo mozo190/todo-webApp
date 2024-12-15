@@ -4,6 +4,7 @@ import sys
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, QLineEdit,
                              QComboBox, QPushButton)
+from project.search_student import SearchStudent
 
 
 class InsertDialog(QDialog):
@@ -59,16 +60,15 @@ class MainWindow(QMainWindow):
 
         file_menu_item = self.menuBar().addMenu('File')
         help_menu_item = self.menuBar().addMenu('Help')
-        search_menu_item = self.menuBar().addMenu('Search')
+        edit_menu_item = self.menuBar().addMenu('Edit')
 
         add_student_action = QAction('Add Student', self)
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
 
         search_action = QAction('Search', self)
+        edit_menu_item.addAction(search_action)
         search_action.triggered.connect(self.search_student)
-        search_menu_item.addAction(search_action)
-
 
         exit_action = QAction('Exit', self)
         exit_action.triggered.connect(QApplication.instance().quit)
@@ -99,7 +99,7 @@ class MainWindow(QMainWindow):
         connection.close()
 
     def search_student(self):
-        dialog = SearchStudent(self)
+        dialog = SearchStudent(self, self.table)
         dialog.exec()
 
     def insert(self):
