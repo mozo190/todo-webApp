@@ -43,6 +43,9 @@ class InsertDialog(QDialog):
         cursor = connect.cursor()
         cursor.execute('INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)',
                        (name, course, mobile))
+        connect.commit()
+        connect.close()
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
