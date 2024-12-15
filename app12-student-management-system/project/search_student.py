@@ -25,3 +25,9 @@ class SearchStudent(QDialog):
         search_term = self.search_input.text()
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
+        cursor.execute('SELECT * FROM students WHERE name = ?', (search_term))
+        student = cursor.fetchall()
+
+        cursor.close()
+        connect.close()
+
