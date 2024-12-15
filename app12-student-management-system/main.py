@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 
-from PyQt6.QtGui import QAction
+from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar)
 
 from project.insert_dialog import InsertDialog
@@ -25,15 +25,15 @@ class MainWindow(QMainWindow):
         help_menu_item = self.menuBar().addMenu('Help')
         edit_menu_item = self.menuBar().addMenu('Edit')
 
-        add_student_action = QAction('Add Student', self)
+        add_student_action = QAction(QIcon("icons/add.png"), 'Add Student', self)
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
 
-        search_action = QAction('Search', self)
+        search_action = QAction(QIcon('icons/search.png'), 'Search', self)
         edit_menu_item.addAction(search_action)
         search_action.triggered.connect(self.search_student)
 
-        exit_action = QAction('Exit', self)
+        exit_action = QAction(QIcon('icons/exit.png'), 'Exit', self)
         exit_action.triggered.connect(QApplication.instance().quit)
         file_menu_item.addAction(exit_action)
 
@@ -54,6 +54,9 @@ class MainWindow(QMainWindow):
         toolbar = QToolBar()
         toolbar.setMovable(True)
         self.addToolBar(toolbar)
+        toolbar.addAction(add_student_action)
+        toolbar.addAction(search_action)
+        toolbar.addAction(exit_action)
 
     def load_data(self):
         connection = sqlite3.connect('database.db')
