@@ -59,10 +59,15 @@ class MainWindow(QMainWindow):
 
         file_menu_item = self.menuBar().addMenu('File')
         help_menu_item = self.menuBar().addMenu('Help')
+        search_menu_item = self.menuBar().addMenu('Search')
 
         add_student_action = QAction('Add Student', self)
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
+
+        exit_action = QAction('Exit', self)
+        exit_action.triggered.connect(QApplication.instance().quit)
+        file_menu_item.addAction(exit_action)
 
         about_action = QAction('About', self)
         help_menu_item.addAction(about_action)
