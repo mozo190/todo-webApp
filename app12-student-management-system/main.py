@@ -2,7 +2,7 @@ import sqlite3
 import sys
 
 from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem)
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar)
 
 from project.insert_dialog import InsertDialog
 from project.search_student import SearchStudent
@@ -50,6 +50,10 @@ class MainWindow(QMainWindow):
         self.table.horizontalHeader().setStyleSheet('font-weight: bold; background-color: lightgrey')
         self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
+
+        toolbar = QToolBar()
+        toolbar.setMovable(True)
+        self.addToolBar(toolbar)
 
     def load_data(self):
         connection = sqlite3.connect('database.db')
