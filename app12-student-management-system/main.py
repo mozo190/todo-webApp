@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         self.table.setColumnCount(4)
 
         self.table.setHorizontalHeaderLabels(('ID', 'Name', 'Course', 'Mobile'))
-        self.table.setStyleSheet('font-weight: bold')
+        self.table.horizontalHeader().setStyleSheet('font-weight: bold; background-color: lightgrey')
         self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
 
