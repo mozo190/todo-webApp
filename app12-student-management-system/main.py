@@ -2,54 +2,17 @@ import sqlite3
 import sys
 
 from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, QLineEdit,
-                             QComboBox, QPushButton)
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem)
+
+from project.insert_dialog import InsertDialog
 from project.search_student import SearchStudent
 
+main_window = None
 
-class InsertDialog(QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setWindowTitle('Add Student')
-        self.setFixedSize(300, 200)
 
-        layout = QVBoxLayout()
-
-        self.name_input = QLineEdit()
-        self.name_input.setPlaceholderText('Name:')
-        layout.addWidget(self.name_input)
-
-        self.course_name = QComboBox()
-        courses = ['Math', 'Science', 'History', 'Computer Science']
-        self.course_name.addItems(courses)
-        layout.addWidget(self.course_name)
-        self.setLayout(layout)
-
-        self.mobile = QLineEdit()
-        self.mobile.setPlaceholderText('Mobile:')
-        layout.addWidget(self.mobile)
-
-        button = QPushButton('Register')
-        button.clicked.connect(self.add_student)
-
-        layout.addWidget(button)
-
-        self.setLayout(layout)
-
-    def add_student(self):
-        name = self.name_input.text()
-        course = self.course_name.currentText()
-        mobile = self.mobile.text()
-        connect = sqlite3.connect('database.db')
-        cursor = connect.cursor()
-        cursor.execute('INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)',
-                       (name, course, mobile))
-        connect.commit()
-        cursor.close()
-        connect.close()
-
-        main_window.load_data()
-        self.accept()
+def get_main_window():
+    global main_window
+    return main_window
 
 
 class MainWindow(QMainWindow):
@@ -103,12 +66,13 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def insert(self):
-        dialog = InsertDialog(self)
+        dialog = InsertDialog(callback=self.load_data)
         dialog.exec()
 
 
-app = QApplication(sys.argv)
-main_window = MainWindow()
-main_window.show()
-main_window.load_data()
-sys.exit(app.exec())
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    main_window = MainWindow()
+    main_window.show()
+    main_window.load_data()
+    sys.exit(app.exec())
