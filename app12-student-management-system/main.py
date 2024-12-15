@@ -65,6 +65,11 @@ class MainWindow(QMainWindow):
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
 
+        search_action = QAction('Search', self)
+        search_action.triggered.connect(self.search_student)
+        search_menu_item.addAction(search_action)
+
+
         exit_action = QAction('Exit', self)
         exit_action.triggered.connect(QApplication.instance().quit)
         file_menu_item.addAction(exit_action)
@@ -92,6 +97,10 @@ class MainWindow(QMainWindow):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
         connection.close()
+
+    def search_student(self):
+        dialog = SearchStudent(self)
+        dialog.exec()
 
     def insert(self):
         dialog = InsertDialog(self)
