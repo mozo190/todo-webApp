@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.table)
 
     def load_data(self):
-        pass
+        self.table
 
 
 app = QApplication(sys.argv)
