@@ -36,19 +36,19 @@ class AvgSpeedCalculator(QWidget):
         grid.addWidget(calculate_button, 2, 0, 1, 3)
         grid.addWidget(avg_speed_label, 3, 0, 1, 3)
 
+        calculate_button.clicked.connect(self.calculate_speed)
         self.setLayout(grid)
 
+    def calculate_speed(self):
+        distance = float(self.distance_line_edit.text())
+        time = float(self.time_line_edit.text())
+        if self.metric_combo_box.currentText() == 'Metric (km)':
+            speed = distance / time
+        else:
+            speed = distance / time * 0.621371
 
-def calculate_speed(self):
-    distance = float(self.distance_line_edit.text())
-    time = float(self.time_line_edit.text())
-    if self.metric_combo_box.currentText() == 'Metric (km)':
-        speed = distance / time
-    else:
-        speed = distance / time * 0.621371
-
-    avg_speed_label = self.findChild(QLabel, 'avg_speed_label')
-    avg_speed_label.setText(f'Average Speed: {speed}')
+    # avg_speed_label = self.findChild(QLabel, 'avg_speed_label')
+    self.avg_speed_label.setText(f'Average Speed: {speed}')
 
 
 app = QApplication(sys.argv)
