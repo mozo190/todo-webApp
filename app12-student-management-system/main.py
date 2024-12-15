@@ -2,7 +2,8 @@ import sqlite3
 import sys
 
 from PyQt6.QtGui import QAction
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, QLineEdit)
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, QLineEdit,
+                             QComboBox)
 
 
 class InsertDialog(QDialog):
@@ -17,6 +18,10 @@ class InsertDialog(QDialog):
         self.name_input.setPlaceholderText('Name:')
         layout.addWidget(self.name_input)
 
+        course_name = QComboBox()
+        courses = ['Math', 'Science', 'History', 'Computer Science']
+        course_name.addItems(courses)
+        layout.addWidget(course_name)
         self.setLayout(layout)
 
 
@@ -50,9 +55,9 @@ class MainWindow(QMainWindow):
     def load_data(self):
         connection = sqlite3.connect('database.db')
         result = connection.execute('SELECT * FROM students')
-        data = list(result)
-        self.table.setRowCount(len(data))
-        for row_number, row_data in enumerate(result):
+        data_ = list(result)
+        self.table.setRowCount(len(data_))
+        for row_number, row_data in enumerate(data_):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
         connection.close()
