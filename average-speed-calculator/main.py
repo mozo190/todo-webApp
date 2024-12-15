@@ -44,11 +44,10 @@ class AvgSpeedCalculator(QWidget):
         time = float(self.time_line_edit.text())
         if self.metric_combo_box.currentText() == 'Metric (km)':
             speed = distance / time
+            self.avg_speed_label.setText(f'Average Speed: {speed} km/h')
         else:
             speed = distance / time * 0.621371
-
-        # avg_speed_label = self.findChild(QLabel, 'avg_speed_label')
-        self.avg_speed_label.setText(f'Average Speed: {speed}')
+            self.avg_speed_label.setText(f'Average Speed: {speed} miles/h')
 
 
 app = QApplication(sys.argv)
