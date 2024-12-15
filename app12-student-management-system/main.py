@@ -3,7 +3,7 @@ import sys
 
 from PyQt6.QtGui import QAction
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, QLineEdit,
-                             QComboBox)
+                             QComboBox, QPushButton)
 
 
 class InsertDialog(QDialog):
@@ -18,12 +18,31 @@ class InsertDialog(QDialog):
         self.name_input.setPlaceholderText('Name:')
         layout.addWidget(self.name_input)
 
-        course_name = QComboBox()
+        self.course_name = QComboBox()
         courses = ['Math', 'Science', 'History', 'Computer Science']
-        course_name.addItems(courses)
-        layout.addWidget(course_name)
+        self.course_name.addItems(courses)
+        layout.addWidget(self.course_name)
         self.setLayout(layout)
 
+        self.mobile = QLineEdit()
+        self.mobile.setPlaceholderText('Mobile:')
+        layout.addWidget(self.mobile)
+
+        button = QPushButton('Register')
+        button.clicked.connect(self.add_student)
+
+        layout.addWidget(button)
+
+        self.setLayout(layout)
+
+    def add_student(self):
+        name = self.name_input.text()
+        course = self.course_name.currentText()
+        mobile = self.mobile.text()
+        connect = sqlite3.connect('database.db')
+        cursor = connect.cursor()
+        cursor.execute('INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)',
+                       (name, course, mobile))
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -35,7 +54,7 @@ class MainWindow(QMainWindow):
         help_menu_item = self.menuBar().addMenu('Help')
 
         add_student_action = QAction('Add Student', self)
-        add_student_action.triggered.connect(self.add_student)
+        add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
 
         about_action = QAction('About', self)
@@ -62,7 +81,7 @@ class MainWindow(QMainWindow):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
         connection.close()
 
-    def add_student(self):
+    def insert(self):
         dialog = InsertDialog(self)
         dialog.exec()
 
