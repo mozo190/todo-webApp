@@ -5,6 +5,7 @@ from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar)
 
 from project.insert_dialog import InsertDialog
+from project.edit_dialog import EditDialog
 from project.search_student import SearchStudent
 
 main_window = None
@@ -94,6 +95,10 @@ class MainWindow(QMainWindow):
 
     def insert(self):
         dialog = InsertDialog(callback=self.load_data)
+        dialog.exec()
+
+    def edit(self):
+        dialog = EditDialog(self, self.cell_clicked)
         dialog.exec()
 
 
