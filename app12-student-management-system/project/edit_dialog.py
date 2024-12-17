@@ -1,3 +1,7 @@
+import sqlite3
+
+from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton
+
 class EditDialog(QDialog):
   def __init__(self, parent=None, callback=None):
         super().__init__(parent)
@@ -14,9 +18,11 @@ class EditDialog(QDialog):
         self.name_input = QLineEdit(student_name)
         layout.addWidget(self.name_input)
 
+        def_coure_name = main_window.table.item(index, 2).text()
         self.course_name = QComboBox()
         courses = ['Math', 'Science', 'History', 'Computer Science']
         self.course_name.addItems(courses)
+        self.course_name.setCurrentText(def_course_name)
         layout.addWidget(self.course_name)
         self.setLayout(layout)
 
@@ -30,6 +36,12 @@ class EditDialog(QDialog):
         layout.addWidget(button)
 
         self.setLayout(layout)
+
+        
     
   def update_student(self):
-        pass    
+          
+
+      if self.callback:
+             callback()
+        self.accept()
