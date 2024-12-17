@@ -25,8 +25,11 @@ class EditDialog(QDialog):
         layout.addWidget(self.mobile)
 
         button = QPushButton('Register')
-        button.clicked.connect(self.add_student)
+        button.clicked.connect(self.update_student)
 
         layout.addWidget(button)
 
         self.setLayout(layout)
+    
+  def update_student(self):
+        pass    
