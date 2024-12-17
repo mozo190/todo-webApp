@@ -13,7 +13,8 @@ class EditDialog(QDialog):
         layout = QVBoxLayout()
 
         index = main_window.table.currentRow()
-        student_name = main.window.table.item(index, 1).text()
+        student_name = main_window.table.item(index, 1).text()
+        self.student_id = main_window.table.item(index, 0).text()
     
         self.name_input = QLineEdit(student_name)
         self.name_input.setPlaceholderText('Name:')
@@ -32,7 +33,7 @@ class EditDialog(QDialog):
         self.mobile.setPlaceholderText('Mobile:')
         layout.addWidget(self.mobile)
 
-        button = QPushButton('Register')
+        button = QPushButton('Update')
         button.clicked.connect(self.update_student)
 
         layout.addWidget(button)
@@ -42,7 +43,18 @@ class EditDialog(QDialog):
         
     
   def update_student(self):
-          
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("UPDATE students SET name=?, course=?, mobile=? WHERE id=?,
+                       (self.name_input.text(),
+                        self.course_name.itemText(self.course_name.currentIndex()),
+                        self.mobile.text(),
+                        self.student_id))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+        main_window.load_data()
 
       if self.callback:
              callback()
