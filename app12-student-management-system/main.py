@@ -3,7 +3,7 @@ import sys
 
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar,
-                             QPushButton)
+                             QPushButton, QScrollArea)
 
 from project.insert_dialog import InsertDialog
 from project.edit_dialog import EditDialog
@@ -52,6 +52,11 @@ class MainWindow(QMainWindow):
         self.table.horizontalHeader().setStyleSheet('font-weight: bold; background-color: lightgrey')
         self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
+
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setWidget(self.table)
+        self.setCentralWidget(scroll_area)
 
         toolbar = QToolBar()
         toolbar.setMovable(True)
