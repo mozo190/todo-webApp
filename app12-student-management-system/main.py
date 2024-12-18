@@ -5,6 +5,7 @@ from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar,
                              QPushButton, QScrollArea)
 
+from project.about_dialog import AboutDialog
 from project.delete_dialog import DeleteDialog
 from project.edit_dialog import EditDialog
 from project.insert_dialog import InsertDialog
