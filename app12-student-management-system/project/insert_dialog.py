@@ -2,6 +2,8 @@ import sqlite3
 
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton
 
+from project.database_connection import DatabaseConnection
+
 
 class InsertDialog(QDialog):
     def __init__(self, parent=None, callback=None):
@@ -39,7 +41,7 @@ class InsertDialog(QDialog):
         course = self.course_name.currentText()
         mobile = self.mobile.text()
 
-        connect = sqlite3.connect('database.db')
+        connect = DatabaseConnection().connect()
         cursor = connect.cursor()
         cursor.execute('INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)',
                        (name, course, mobile))
