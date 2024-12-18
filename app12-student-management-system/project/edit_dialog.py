@@ -1,5 +1,3 @@
-import sqlite3
-
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton
 
 from project.database_connection import DatabaseConnection

@@ -1,4 +1,3 @@
-import sqlite3
 import sys
 
 from PyQt6.QtGui import QAction, QIcon
