@@ -2,8 +2,9 @@ import sqlite3
 
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QComboBox, QPushButton
 
+
 class EditDialog(QDialog):
-  def __init__(self, parent=None, callback=None):
+    def __init__(self, parent=None, callback=None):
         super().__init__(parent)
         self.setWindowTitle('Update Student Data')
         self.setFixedSize(300, 200)
@@ -12,15 +13,15 @@ class EditDialog(QDialog):
 
         layout = QVBoxLayout()
 
-        index = main_window.table.currentRow()
-        student_name = main_window.table.item(index, 1).text()
-        self.student_id = main_window.table.item(index, 0).text()
-    
+        index = self.parent().table.currentRow()
+        student_name = self.parent().table.item(index, 1).text()
+        self.student_id = self.parent().table.item(index, 0).text()
+
         self.name_input = QLineEdit(student_name)
         self.name_input.setPlaceholderText('Name:')
         layout.addWidget(self.name_input)
 
-        def_coure_name = main_window.table.item(index, 2).text()
+        def_course_name = self.parent().table.item(index, 2).text()
         self.course_name = QComboBox()
         courses = ['Math', 'Science', 'History', 'Computer Science']
         self.course_name.addItems(courses)
@@ -28,7 +29,7 @@ class EditDialog(QDialog):
         layout.addWidget(self.course_name)
         self.setLayout(layout)
 
-        mobile = main_window.table.item(index, 3).text()
+        mobile = self.parent().table.item(index, 3).text()
         self.mobile = QLineEdit(mobile)
         self.mobile.setPlaceholderText('Mobile:')
         layout.addWidget(self.mobile)
@@ -40,12 +41,10 @@ class EditDialog(QDialog):
 
         self.setLayout(layout)
 
-        
-    
-  def update_student(self):
+    def update_student(self):
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
-        cursor.execute("UPDATE students SET name=?, course=?, mobile=? WHERE id=?,
+        cursor.execute("UPDATE students SET name=?, course=?, mobile=? WHERE id=?",
                        (self.name_input.text(),
                         self.course_name.itemText(self.course_name.currentIndex()),
                         self.mobile.text(),
@@ -54,8 +53,8 @@ class EditDialog(QDialog):
         cursor.close()
         connection.close()
 
-        main_window.load_data()
+        self.parent().load_data()
 
-      if self.callback:
-             callback()
+        if self.callback:
+            self.callback()
         self.accept()
