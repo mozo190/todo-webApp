@@ -1,6 +1,6 @@
 import sqlite3
 
-from PyQt6.QtWidgets import QDialog, QGridLayout, QLabel, QPushButton
+from PyQt6.QtWidgets import QDialog, QGridLayout, QLabel, QPushButton, QMessageBox
 
 
 class DeleteDialog(QDialog):
@@ -36,6 +36,14 @@ class DeleteDialog(QDialog):
         connection.close()
 
         self.parent().load_data()
+
+        self.close()
+
+        confirmation_widget = QMessageBox()
+        confirmation_widget.setWindowTitle('Student Deleted')
+        confirmation_widget.setText('Student has been deleted successfully.')
+        confirmation_widget.exec()
+
 
         if self.callback:
             self.callback()
