@@ -5,8 +5,9 @@ from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar,
                              QPushButton, QScrollArea)
 
-from project.insert_dialog import InsertDialog
+from project.delete_dialog import DeleteDialog
 from project.edit_dialog import EditDialog
+from project.insert_dialog import InsertDialog
 from project.search_student import SearchStudent
 
 main_window = None
@@ -111,16 +112,8 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def delete_record(self):
-        index = self.table.currentRow()
-        if index >= 0:
-            student_id = self.table.item(index, 0).text()
-            connection = sqlite3.connect('database.db')
-            cursor = connection.cursor()
-            cursor.execute('DELETE FROM students WHERE id=?', (student_id,))
-            connection.commit()
-            cursor.close()
-            connection.close()
-            self.load_data()
+        dialog = DeleteDialog(parent=self, callback=self.load_data)
+        dialog.exec()
 
 
 if __name__ == '__main__':
