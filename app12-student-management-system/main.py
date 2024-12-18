@@ -6,6 +6,7 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidg
                              QPushButton, QScrollArea)
 
 from project.about_dialog import AboutDialog
+from project.database_connection import DatabaseConnection
 from project.delete_dialog import DeleteDialog
 from project.edit_dialog import EditDialog
 from project.insert_dialog import InsertDialog
@@ -92,7 +93,7 @@ class MainWindow(QMainWindow):
         self.statusBar().addWidget(delete_button)
 
     def load_data(self):
-        connection = sqlite3.connect('database.db')
+        connection = DatabaseConnection().connect()
         result = connection.execute('SELECT * FROM students')
         data_ = list(result)
         self.table.setRowCount(len(data_))
