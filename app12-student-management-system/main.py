@@ -44,6 +44,7 @@ class MainWindow(QMainWindow):
         help_menu_item.addAction(about_action)
 
         about_action.setMenuRole(QAction.MenuRole.NoRole)
+        about_action.triggered.connect(self.about)
 
         self.table = QTableWidget()
         self.table.setRowCount(0)
@@ -113,6 +114,10 @@ class MainWindow(QMainWindow):
 
     def delete_record(self):
         dialog = DeleteDialog(parent=self, callback=self.load_data)
+        dialog.exec()
+
+    def about(self):
+        dialog = AboutDialog(self)
         dialog.exec()
 
 
