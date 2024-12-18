@@ -2,7 +2,8 @@ import sqlite3
 import sys
 
 from PyQt6.QtGui import QAction, QIcon
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar)
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar,
+                             QPushButton)
 
 from project.insert_dialog import InsertDialog
 from project.edit_dialog import EditDialog
@@ -60,24 +61,24 @@ class MainWindow(QMainWindow):
         toolbar.addAction(exit_action)
 
         self.statusbar = QStatusBar()
-        self.statusbar.setStatusBar(self.statusbar)
+        self.statusbar().setStatusBar(self.statusbar)
 
         self.table.cellClicked.connect(self.cell_clicked)
 
-    def cell_clicked():
+    def cell_clicked(self):
         edit_button = QPushButton("Edit Record")
         edit_button.clicked.connect(self.edit)
 
         delete_button = QPushButton("Delete")
-        delete_button.clicked.connect(self.edit)
+        delete_button.clicked.connect(self.delete_record)
 
-        children = self.findChildren(QPushButton)
+        children = self.statusBar().findChildren(QPushButton)
         if children:
             for child in children:
-                self.statusBar.removeWidget(child)
+                self.statusBar().removeWidget(child)
 
-        self.statusBar.addWidget(edit_button)
-        self.statusBar.addWidget(delete_buton)
+        self.statusBar().addWidget(edit_button)
+        self.statusBar().addWidget(delete_button)
 
     def load_data(self):
         connection = sqlite3.connect('database.db')
@@ -94,12 +95,24 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def insert(self):
-        dialog = InsertDialog(callback=self.load_data)
+        dialog = InsertDialog(callback=self.load_data, parent=self)
         dialog.exec()
 
     def edit(self):
-        dialog = EditDialog(self, self.cell_clicked)
+        dialog = EditDialog(parent=self, callback=self.load_data)
         dialog.exec()
+
+    def delete_record(self):
+        index = self.table.currentRow()
+        if index >= 0:
+            student_id = self.table.item(index, 0).text()
+            connection = sqlite3.connect('database.db')
+            cursor = connection.cursor()
+            cursor.execute('DELETE FROM students WHERE id=?', (student_id,))
+            connection.commit()
+            cursor.close()
+            connection.close()
+            self.load_data()
 
 
 if __name__ == '__main__':
