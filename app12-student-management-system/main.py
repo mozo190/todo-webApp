@@ -25,8 +25,8 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 800, 600)
 
         file_menu_item = self.menuBar().addMenu('File')
-        help_menu_item = self.menuBar().addMenu('Help')
         edit_menu_item = self.menuBar().addMenu('Edit')
+        help_menu_item = self.menuBar().addMenu('Help')
 
         add_student_action = QAction(QIcon("icons/add.png"), 'Add Student', self)
         add_student_action.triggered.connect(self.insert)
