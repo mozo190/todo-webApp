@@ -61,15 +61,18 @@ class MainWindow(QMainWindow):
         toolbar.addAction(exit_action)
 
         self.statusbar = QStatusBar()
-        self.statusbar().setStatusBar(self.statusbar)
+        self.setStatusBar(self.statusbar)
+        self.statusBar().setStyleSheet('background-color: lightgrey')
 
         self.table.cellClicked.connect(self.cell_clicked)
 
     def cell_clicked(self):
         edit_button = QPushButton("Edit Record")
+        edit_button.setStyleSheet('background-color: lightblue')
         edit_button.clicked.connect(self.edit)
 
         delete_button = QPushButton("Delete")
+        delete_button.setStyleSheet('background-color: lightcoral')
         delete_button.clicked.connect(self.delete_record)
 
         children = self.statusBar().findChildren(QPushButton)
@@ -95,7 +98,7 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def insert(self):
-        dialog = InsertDialog(callback=self.load_data, parent=self)
+        dialog = InsertDialog(parent=self, callback=self.load_data)
         dialog.exec()
 
     def edit(self):
