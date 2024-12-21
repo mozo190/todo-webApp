@@ -26,24 +26,36 @@ class DeleteDialog(QDialog):
 
     def delete_student(self):
         index = self.parent().table.currentRow()
+        # Check if a student is selected
+        if index == -1:
+            QMessageBox().warning(self, 'No Student Selected', 'Please select a student to delete.')
+            return
+
         student_id = self.parent().table.item(index, 0).text()
 
-        connection = DatabaseConnection().connect()
-        cursor = connection.cursor()
-        cursor.execute("DELETE FROM students WHERE id=%s", (student_id,))
-        connection.commit()
-        cursor.close()
-        connection.close()
+        if not student_id:
+            QMessageBox().warning(self, 'No Student Selected', 'Please select a student to delete.')
+            return
 
-        self.parent().load_data()
+        try:
+            connection = DatabaseConnection().connect()
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM students WHERE id=%s", (student_id,))
+            connection.commit()
+            cursor.close()
+            connection.close()
 
-        self.close()
+            self.parent().load_data()
 
-        confirmation_widget = QMessageBox()
-        confirmation_widget.setWindowTitle('Student Deleted')
-        confirmation_widget.setText('Student has been deleted successfully.')
-        confirmation_widget.exec()
+            self.close()
 
-        if self.callback:
-            self.callback()
-        self.accept()
+            confirmation_widget = QMessageBox()
+            confirmation_widget.setWindowTitle('Student Deleted')
+            confirmation_widget.setText('Student has been deleted successfully.')
+            confirmation_widget.exec()
+
+            if self.callback:
+                self.callback()
+            self.accept()
+        except Exception as e:
+            QMessageBox.critical(self, 'Error Deleting Student', f'Error deleting student: {e}')
