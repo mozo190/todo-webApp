@@ -29,14 +29,14 @@ class SearchStudent(QDialog):
     def perform_search(self):
         try:
             search_term = self.search_input.text()
-            connect = DatabaseConnection().connect()
-            cursor = connect.cursor()
-            cursor.execute('SELECT * FROM students WHERE name LIKE %s', (f'{search_term}%',))
-            results = cursor.fetchall()
+            with DatabaseConnection().connect() as connect:
+                with connect.cursor() as cursor:
+                    cursor.execute('SELECT * FROM students WHERE name LIKE %s', (f'{search_term}%',))
+                    results = cursor.fetchall()
 
-            if not results:
-                print('Student not found')
-                return
+                    if not results:
+                        print('Student not found')
+                        return
 
             student = self.table.findItems(search_term, Qt.MatchFlag.MatchContains)
 
