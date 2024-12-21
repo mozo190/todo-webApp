@@ -144,8 +144,8 @@ class MainWindow(QMainWindow):
         try:
             dialog = InsertDialog(parent=self, callback=self.load_data)
             dialog.exec()
-        except mysql.connector.Error as e:
-            logging.error(f'Error inserting data: {e}')
+        except mysql.connector.Error as me:
+            logging.error(f'Error inserting data: {me}')
             self.statusBar().showMessage('Error inserting data', 5000)
 
     def edit(self):

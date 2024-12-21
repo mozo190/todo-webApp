@@ -31,7 +31,7 @@ class DeleteDialog(QDialog):
             QMessageBox().warning(self, 'No Student Selected', 'Please select a student to delete.')
             return
 
-        student_id = self.parent().table.item(index, 0).text()
+        student_id = self.parent().table.item(index, 3).text()
 
         if not student_id:
             QMessageBox().warning(self, 'No Student Selected', 'Please select a student to delete.')

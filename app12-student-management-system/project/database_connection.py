@@ -1,7 +1,6 @@
 import logging
 
 import mysql.connector
-from mysql.connector import connect
 
 
 class DatabaseConnection:
@@ -25,4 +24,3 @@ class DatabaseConnection:
         except mysql.connector.Error as e:
             logging.error(f'Error: {e}')
             raise
-
