@@ -1,5 +1,7 @@
+import logging
 import sys
 
+import mysql
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QTableWidget, QTableWidgetItem, QToolBar, QStatusBar,
                              QPushButton, QScrollArea)
@@ -17,6 +19,28 @@ main_window = None
 def get_main_window():
     global main_window
     return main_window
+
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename="error.log",
+    filemode="a",
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+
+
+def initialize_database():
+    connection = DatabaseConnection().connect()
+    cursor = connection.cursor()
+    cursor.execute('CREATE TABLE IF NOT EXISTS students ('
+                   'id INT AUTO_INCREMENT PRIMARY KEY, '
+                   'name VARCHAR(255), '
+                   'course VARCHAR(255), '
+                   'mobile VARCHAR(255))'
+                   )
+    connection.commit()
+    cursor.close()
+    connection.close()
 
 
 class MainWindow(QMainWindow):
@@ -92,30 +116,53 @@ class MainWindow(QMainWindow):
         self.statusBar().addWidget(delete_button)
 
     def load_data(self):
-        connection = DatabaseConnection().connect()
-        result = connection.execute('SELECT * FROM students')
-        data_ = list(result)
-        self.table.setRowCount(len(data_))
-        for row_number, row_data in enumerate(data_):
-            for column_number, data in enumerate(row_data):
-                self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-        connection.close()
+        try:
+            connection = DatabaseConnection().connect()
+            cursor = connection.cursor()
+            cursor.execute('SELECT * FROM students')
+            result = cursor.fetchall()
+            data_ = list(result)
+            self.table.setRowCount(len(data_))
+            for row_number, row_data in enumerate(data_):
+                for column_number, data in enumerate(row_data):
+                    self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
+            cursor.close()
+            connection.close()
+        except mysql.connector.Error as e:
+            logging.error(f'Error loading data: {e}')
+            self.statusBar().showMessage('Error loading data', 5000)
 
     def search_student(self):
-        dialog = SearchStudent(self, self.table)
-        dialog.exec()
+        try:
+            dialog = SearchStudent(self, self.table)
+            dialog.exec()
+        except mysql.connector.Error as e:
+            logging.error(f'Error searching student: {e}')
+            self.statusBar().showMessage('Error searching student', 5000)
 
     def insert(self):
-        dialog = InsertDialog(parent=self, callback=self.load_data)
-        dialog.exec()
+        try:
+            dialog = InsertDialog(parent=self, callback=self.load_data)
+            dialog.exec()
+        except mysql.connector.Error as e:
+            logging.error(f'Error inserting data: {e}')
+            self.statusBar().showMessage('Error inserting data', 5000)
 
     def edit(self):
-        dialog = EditDialog(parent=self, callback=self.load_data)
-        dialog.exec()
+        try:
+            dialog = EditDialog(parent=self, callback=self.load_data)
+            dialog.exec()
+        except mysql.connector.Error as e:
+            logging.error(f'Error updating data: {e}')
+            self.statusBar().showMessage('Error updating data', 5000)
 
     def delete_record(self):
-        dialog = DeleteDialog(parent=self, callback=self.load_data)
-        dialog.exec()
+        try:
+            dialog = DeleteDialog(parent=self, callback=self.load_data)
+            dialog.exec()
+        except mysql.connector.Error as er:
+            logging.error(f'Error deleting data: {er}')
+            self.statusBar().showMessage('Error deleting data', 5000)
 
     def about(self):
         dialog = AboutDialog(self)
@@ -123,8 +170,13 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
+    initialize_database()
     app = QApplication(sys.argv)
     main_window = MainWindow()
     main_window.show()
-    main_window.load_data()
+    try:
+        main_window.load_data()
+    except Exception as e:
+        logging.error(f'Error loading data: {e}')
+        main_window.statusBar().showMessage('Error loading data', 5000)
     sys.exit(app.exec())

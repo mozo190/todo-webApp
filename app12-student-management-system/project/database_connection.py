@@ -1,9 +1,24 @@
-import sqlite3
+import logging
+
+import mysql.connector
 
 
 class DatabaseConnection:
-    def __init__(self, database_file='database.db'):
-        self.database_file = database_file
+    def __init__(self, host="localhost", user="root", password="pass", database="school"):
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
 
     def connect(self):
-        return sqlite3.connect(self.database_file)
+        try:
+            connection = mysql.connector.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database
+            )
+            return connection
+        except mysql.connector.Error as e:
+            logging.error(f'Error: {e}')
+            raise

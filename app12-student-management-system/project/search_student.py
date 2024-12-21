@@ -1,7 +1,10 @@
 import sqlite3
+import mysql.connector
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QLineEdit, QPushButton)
+
+from project.database_connection import DatabaseConnection
 
 
 class SearchStudent(QDialog):
@@ -25,9 +28,10 @@ class SearchStudent(QDialog):
 
     def perform_search(self):
         search_term = self.search_input.text()
-        connect = sqlite3.connect('database.db')
+        connect = DatabaseConnection().connect()
         cursor = connect.cursor()
-        cursor.execute('SELECT * FROM students WHERE name = ?', (search_term,))
+        cursor.execute('SELECT * FROM students WHERE name = %s', (search_term,))
+
         student = self.table.findItems(search_term, Qt.MatchFlag.MatchFixedString)
 
         for item in student:

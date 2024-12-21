@@ -30,7 +30,7 @@ class DeleteDialog(QDialog):
 
         connection = DatabaseConnection().connect()
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM students WHERE id=?", (student_id,))
+        cursor.execute("DELETE FROM students WHERE id=%s", (student_id,))
         connection.commit()
         cursor.close()
         connection.close()
