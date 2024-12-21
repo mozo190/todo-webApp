@@ -1,5 +1,5 @@
-import sqlite3
-import mysql.connector
+# This file contains the SearchStudent class which is a
+# QDialog that allows the user to search for a student in the database.
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QLineEdit, QPushButton)
@@ -27,18 +27,32 @@ class SearchStudent(QDialog):
         self.setLayout(layout)
 
     def perform_search(self):
-        search_term = self.search_input.text()
-        connect = DatabaseConnection().connect()
-        cursor = connect.cursor()
-        cursor.execute('SELECT * FROM students WHERE name = %s', (search_term,))
+        try:
+            search_term = self.search_input.text()
+            connect = DatabaseConnection().connect()
+            cursor = connect.cursor()
+            cursor.execute('SELECT * FROM students WHERE name LIKE %s', (f'{search_term}%',))
+            results = cursor.fetchall()
 
-        student = self.table.findItems(search_term, Qt.MatchFlag.MatchFixedString)
+            if not results:
+                print('Student not found')
+                return
 
-        for item in student:
-            print(item.row(), item.column())
-            self.table.item(item.row(), item.column()).setBackground(Qt.GlobalColor.red)
-        cursor.close()
-        connect.close()
+            student = self.table.findItems(search_term, Qt.MatchFlag.MatchContains)
 
-        if student:
-            print(student)
+            if not student:
+                print('Student not found in table')
+                return
+
+            for item in student:
+                print(item.row(), item.column())
+                self.table.item(item.row(), item.column()).setBackground(Qt.GlobalColor.red)
+
+            cursor.close()
+            connect.close()
+
+            if student:
+                print(student)
+
+        except Exception as ex:
+            print(f'Error searching student {ex}')

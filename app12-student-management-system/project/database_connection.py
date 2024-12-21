@@ -1,10 +1,11 @@
 import logging
 
 import mysql.connector
+from mysql.connector import connect
 
 
 class DatabaseConnection:
-    def __init__(self, host="localhost", user="root", password="pass", database="school"):
+    def __init__(self, host="localhost", user="root", password="3Randi722///", database="school"):
         self.host = host
         self.user = user
         self.password = password
@@ -18,7 +19,10 @@ class DatabaseConnection:
                 password=self.password,
                 database=self.database
             )
+            print('Connected to database here')
+            logging.info('Connected to database')
             return connection
         except mysql.connector.Error as e:
             logging.error(f'Error: {e}')
             raise
+

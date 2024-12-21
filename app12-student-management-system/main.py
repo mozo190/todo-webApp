@@ -136,8 +136,8 @@ class MainWindow(QMainWindow):
         try:
             dialog = SearchStudent(self, self.table)
             dialog.exec()
-        except mysql.connector.Error as e:
-            logging.error(f'Error searching student: {e}')
+        except mysql.connector.Error as er:
+            logging.error(f'Error searching student: {er}')
             self.statusBar().showMessage('Error searching student', 5000)
 
     def insert(self):
