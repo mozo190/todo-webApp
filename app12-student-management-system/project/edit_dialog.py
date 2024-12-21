@@ -14,14 +14,14 @@ class EditDialog(QDialog):
         layout = QVBoxLayout()
 
         index = self.parent().table.currentRow()
-        student_name = self.parent().table.item(index, 1).text()
-        self.student_id = self.parent().table.item(index, 0).text()
+        student_name = self.parent().table.item(index, 0).text()
+        self.student_id = self.parent().table.item(index, 3).text()
 
         self.name_input = QLineEdit(student_name)
         self.name_input.setPlaceholderText('Name:')
         layout.addWidget(self.name_input)
 
-        def_course_name = self.parent().table.item(index, 2).text()
+        def_course_name = self.parent().table.item(index, 1).text()
         self.course_name = QComboBox()
         courses = ['Math', 'Science', 'History', 'Computer Science']
         self.course_name.addItems(courses)
@@ -29,7 +29,7 @@ class EditDialog(QDialog):
         layout.addWidget(self.course_name)
         self.setLayout(layout)
 
-        mobile = self.parent().table.item(index, 3).text()
+        mobile = self.parent().table.item(index, 2).text()
         self.mobile = QLineEdit(mobile)
         self.mobile.setPlaceholderText('Mobile:')
         layout.addWidget(self.mobile)
@@ -49,6 +49,7 @@ class EditDialog(QDialog):
                         self.course_name.itemText(self.course_name.currentIndex()),
                         self.mobile.text(),
                         self.student_id))
+
         connection.commit()
         cursor.close()
         connection.close()
