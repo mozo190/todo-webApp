@@ -79,3 +79,5 @@ if __name__ == '__main__':
     webAutomation.fill_form('Zomo', 'zooo@gamil.com', 'Budapest', 'Budapest')
     webAutomation.upload_download()
     webAutomation.close_browser()
+    # Program stops here
+    print('Browser closed...')
