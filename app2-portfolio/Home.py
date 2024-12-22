@@ -26,15 +26,15 @@ df = pd.read_csv('data.csv', sep=';')
 df['image'] = df['image'].apply(lambda x: f"images/{x}")
 
 with col3:
-    for i, row in df[:10].iterrows():
+    for i, row in df[:12].iterrows():
         st.header(f" {row['title']}")
         st.write(row['description'])
-        st.image(row['image'])
+        st.image(row['image'], use_container_width=True)
         st.write(f"[Source code]({row['url']})")
 
 with col4:
-    for i, row in df[10:].iterrows():
+    for i, row in df[11:].iterrows():
         st.header(f" {row['title']}")
         st.write(row['description'])
-        st.image(row['image'])
+        st.image(row['image'], use_container_width=True)
         st.write(f"[Source code]({row['url']})")
