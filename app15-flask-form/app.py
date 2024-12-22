@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -20,7 +20,6 @@ class Form(db.Model):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    print(request.method)
     if request.method == 'POST':
         first_name = request.form['first_name']
         last_name = request.form['last_name']
@@ -36,6 +35,7 @@ def index():
                     current_position=current_position)
         db.session.add(form)
         db.session.commit()
+        flash(f'{first_name}, your form submitted successfully')
     return render_template('index.html')
 
 
