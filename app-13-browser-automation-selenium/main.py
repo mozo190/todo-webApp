@@ -42,7 +42,7 @@ full_name.send_keys('Zomo')
 email_address.send_keys('zozozo@citromail.com')
 current_address.send_keys('Budapest')
 permanent_address.send_keys('Budapest')
-submit_button.click()
+driver.execute_script("arguments[0].click();", submit_button)
 
 input('Press Enter to close the browser...')
 driver.quit()
