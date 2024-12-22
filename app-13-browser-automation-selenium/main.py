@@ -36,44 +36,40 @@ class WebAutomation:
         self.driver.execute_script("arguments[0].click();", login_button)
 
     def fill_form(self):
-        pass
+        # Locate the Elements dropdown and Text Box
+        elements = (WebDriverWait(self.driver, 10).
+        until(EC.visibility_of_element_located(
+            (By.XPATH, '//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div'))))
+        elements.click()
+
+        text_box = (WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'item-0'))))
+        text_box.click()
+
+        # Locate the form fields and submit button
+        full_name = (WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'userName'))))
+        email_address = (WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'userEmail'))))
+        current_address = (
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'currentAddress'))))
+        permanent_address = (
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'permanentAddress'))))
+        submit_button = self.driver.find_element(By.ID, 'submit')
+
+        # Fill the form fields
+        full_name.send_keys('Zomo')
+        email_address.send_keys('zozozo@citromail.com')
+        current_address.send_keys('Budapest')
+        permanent_address.send_keys('Budapest')
+        self.driver.execute_script("arguments[0].click();", submit_button)
 
     def upload_download(self):
-        pass
+        # Locate the Upload and Download link
+        upload_download = (WebDriverWait(self.driver, 10).
+                           until(EC.visibility_of_element_located((By.ID, 'item-7'))))
+        upload_download.click()
+        download_button = self.driver.find_element(By.ID, 'downloadButton')
+        self.driver.execute_script("arguments[0].click();", download_button)
 
     def close_browser(self):
-        pass
+        self.driver.quit()
 
-
-# Locate the Elements dropdown and Text Box
-elements = (WebDriverWait(driver, 10).
-            until(EC.visibility_of_element_located((By.XPATH,
-                                                    '//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div'))))
-elements.click()
-
-text_box = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'item-0'))))
-text_box.click()
-
-# Locate the form fields and submit button
-full_name = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'userName'))))
-email_address = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'userEmail'))))
-current_address = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'currentAddress'))))
-permanent_address = (WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'permanentAddress'))))
-submit_button = driver.find_element(By.ID, 'submit')
-
-# Fill the form fields
-full_name.send_keys('Zomo')
-email_address.send_keys('zozozo@citromail.com')
-current_address.send_keys('Budapest')
-permanent_address.send_keys('Budapest')
-driver.execute_script("arguments[0].click();", submit_button)
-
-# Locate the Upload and Download link
-upload_download = (WebDriverWait(driver, 10).
-                   until(EC.visibility_of_element_located((By.ID, 'item-7'))))
-upload_download.click()
-download_button = driver.find_element(By.ID, 'downloadButton')
-driver.execute_script("arguments[0].click();", download_button)
-
-input('Press Enter to close the browser...')
-driver.quit()
+# input('Press Enter to close the browser...')
