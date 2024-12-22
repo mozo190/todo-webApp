@@ -15,11 +15,11 @@ driver.get('https://demoqa.com/login')
 
 username_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'userName')))
 password_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'password')))
-button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'login')))
+login_button = driver.find_element(By.ID, 'login')
 
 username_field.send_keys('zomo')
 password_field.send_keys('Python123@')
-button.click()
+driver.execute_script("arguments[0].click();", login_button)
 
 input('Press Enter to close the browser...')
 driver.quit()
