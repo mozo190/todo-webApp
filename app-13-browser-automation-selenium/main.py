@@ -7,28 +7,43 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-# Disable the search engine choice screen
-chrome_options = Options()
-chrome_options.add_argument('--disable-search-engine-choice-screen')
 
-# Set the download path
-download_path = os.getcwd()
-prefs = {'download.default_directory': download_path}
-chrome_options.add_experimental_option('prefs', prefs)
+class WebAutomation:
+    def __init__(self):
+        # Disable the search engine choice screen
+        chrome_options = Options()
+        chrome_options.add_argument('--disable-search-engine-choice-screen')
 
-# Set the path to the chromedriver executable
-service_ = Service('chromedriver-win64/chromedriver.exe')
-driver = webdriver.Chrome(service=service_)
+        # Set the download path
+        download_path = os.getcwd()
+        prefs = {'download.default_directory': download_path}
+        chrome_options.add_experimental_option('prefs', prefs)
 
-driver.get('https://demoqa.com/login')
+        # Set the path to the chromedriver executable
+        service_ = Service('chromedriver-win64/chromedriver.exe')
+        self.driver = webdriver.Chrome(service=service_)
 
-username_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'userName')))
-password_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, 'password')))
-login_button = driver.find_element(By.ID, 'login')
+    def login(self, username, password):
+        self.driver.get('https://demoqa.com/login')
 
-username_field.send_keys('zomo')
-password_field.send_keys('Python123@')
-driver.execute_script("arguments[0].click();", login_button)
+        # Locate the username and password fields and the login button
+        username_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'userName')))
+        password_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, 'password')))
+        login_button = self.driver.find_element(By.ID, 'login')
+
+        username_field.send_keys(username)
+        password_field.send_keys(password)
+        self.driver.execute_script("arguments[0].click();", login_button)
+
+    def fill_form(self):
+        pass
+
+    def upload_download(self):
+        pass
+
+    def close_browser(self):
+        pass
+
 
 # Locate the Elements dropdown and Text Box
 elements = (WebDriverWait(driver, 10).
