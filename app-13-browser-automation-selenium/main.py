@@ -35,10 +35,9 @@ class WebAutomation:
         password_field.send_keys(password)
         self.driver.execute_script("arguments[0].click();", login_button)
 
-    def fill_form(self):
+    def fill_form(self, full_name_str, email_address_str, current_address_str, permanent_address_str):
         # Locate the Elements dropdown and Text Box
-        elements = (WebDriverWait(self.driver, 10).
-        until(EC.visibility_of_element_located(
+        elements = (WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(
             (By.XPATH, '//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div'))))
         elements.click()
 
@@ -55,10 +54,10 @@ class WebAutomation:
         submit_button = self.driver.find_element(By.ID, 'submit')
 
         # Fill the form fields
-        full_name.send_keys('Zomo')
-        email_address.send_keys('zozozo@citromail.com')
-        current_address.send_keys('Budapest')
-        permanent_address.send_keys('Budapest')
+        full_name.send_keys(full_name_str)
+        email_address.send_keys(email_address_str)
+        current_address.send_keys(current_address_str)
+        permanent_address.send_keys(permanent_address_str)
         self.driver.execute_script("arguments[0].click();", submit_button)
 
     def upload_download(self):
@@ -72,4 +71,11 @@ class WebAutomation:
     def close_browser(self):
         self.driver.quit()
 
-# input('Press Enter to close the browser...')
+
+if __name__ == '__main__':
+    # input('Press Enter to close the browser...')
+    webAutomation = WebAutomation()
+    webAutomation.login('Zomo', 'Python@123')
+    webAutomation.fill_form('Zomo', 'zooo@gamil.com', 'Budapest', 'Budapest')
+    webAutomation.upload_download()
+    webAutomation.close_browser()
