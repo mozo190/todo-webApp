@@ -23,16 +23,19 @@ df = pd.read_csv('data.csv', sep=';')
 
 # Add images to the dataframe
 df['image'] = df['image'].apply(lambda x: f"images/{x}")
+tasks = int(len(df) / 2)
+task_remain = len(df) - tasks + 1
+print(f"Number of tasks: {tasks}")
 
 with col3:
-    for i, row in df[:12].iterrows():
+    for i, row in df[:task_remain].iterrows():
         st.header(f" {row['title']}")
         st.write(row['description'])
         st.image(row['image'], use_container_width=True)
         st.write(f"[Source code]({row['url']})")
 
 with col4:
-    for i, row in df[11:].iterrows():
+    for i, row in df[tasks:].iterrows():
         st.header(f" {row['title']}")
         st.write(row['description'])
         st.image(row['image'], use_container_width=True)
