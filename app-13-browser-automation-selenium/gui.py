@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 from main import WebAutomation
 
@@ -61,6 +62,8 @@ class Application:
         self.web_automation.fill_form(full_name, email_address, current_address, permanent_address)
 
     def close_window(self):
+        self.web_automation.close_browser()
+        messagebox.showinfo('Success', 'Browser closed successfully')
         self.root.destroy()
 
 
