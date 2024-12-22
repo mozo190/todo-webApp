@@ -1,5 +1,7 @@
 import tkinter as tk
 
+from main import WebAutomation
+
 
 class Application:
     def __init__(self, root):
@@ -46,7 +48,17 @@ class Application:
         tk.Button(self.button_frame, text='Close browser', command=self.close_window).grid(row=0, column=1, padx=5)
 
     def submit_data(self):
-        pass
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        full_name = self.full_name_entry.get()
+        email_address = self.email_address_entry.get()
+        current_address = self.current_address_entry.get()
+        permanent_address = self.permanent_address_entry.get()
+
+        # Call the login method
+        self.web_automation = WebAutomation()
+        self.web_automation.login(username, password)
+        self.web_automation.fill_form(full_name, email_address, current_address, permanent_address)
 
     def close_window(self):
         self.root.destroy()
