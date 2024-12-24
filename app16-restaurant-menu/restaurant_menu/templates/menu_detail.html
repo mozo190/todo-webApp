@@ -25,7 +25,7 @@
             {% if item.status == 0 %}
                 <a href="#" class="btn btn-danger ms-auto d-block order-btn" style="float:right;">Order Now</a>
             {% else %}
-                <a href="#" class="btn btn-secondary ms-auto d-block order-btn btn-disabled" style="float:right;" >No Orderable</a>
+                <a href="#" class="btn btn-secondary ms-auto d-block order-btn btn-disabled" role="button" aria-disabled="true" style="float:right;" >No Orderable</a>
             {% endif %}
         </div>
     </div>
@@ -51,5 +51,6 @@
     .btn-disabled:hover {
         transform: none;
         box-shadow: none;
+        cursor: none;
     }
 </style>
