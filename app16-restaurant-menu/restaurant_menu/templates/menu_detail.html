@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
   <h1>Restaurant Menu</h1>
     <h2 style="color:blue">{{ item.meal }}</h2>
         <p>{{ item.description }}</p>
         <p>{{ item.price }} $</p>
         <p>{{ item.get_status_display }}</p>  <!-- This is how we display the status of the item -->
         <a href="{% url 'index' %}">Back to menu</a>
-</body>
-</html>
+{% endblock content %}
