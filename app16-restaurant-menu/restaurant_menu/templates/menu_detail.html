@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Restaurant Menu</h1>
-    <h2 style="color:blue">{{ item.meal }}</h2>
-        <p>{{ item.description }}</p>
-        <p>{{ item.price }} $</p>
-        <p>{{ item.get_status_display }}</p>  <!-- This is how we display the status of the item -->
-        <a href="{% url 'index' %}">Back to menu</a>
+
+<div class="container">
+  <h1 class="text-center mb-4">Restaurant Menu</h1>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 >{{ item.meal }}</h2>
+        </div>
+<!--        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.meal }}">-->
+        <div class="card-body">
+            <p><strong>Description:</strong> {{ item.description }}</p>
+            <p><strong>Price:</strong> {{ item.price }} $</p>
+            <p><strong>Status:</strong>
+                {% if item.status == 0 %}
+                    <span class="badge bg-success rounded-pill">Available</span>
+                {% else %}
+                    <span class="badge bg-danger rounded-pill">Unavailable</span>
+                {% endif %}
+            </p>  <!-- This is how we display the status of the item -->
+        <a href="{% url 'index' %}" class="btn btn-secondary">Back to menu</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}
