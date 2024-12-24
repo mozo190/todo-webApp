@@ -22,8 +22,34 @@
         <a href="{% url 'index' %}" class="btn btn-secondary">Back to menu</a>
 
             <!-- Add to order button -->
-            <a href="#" class="btn btn-danger ms-auto d-block" style="float:right;">Order Now</a>
+            {% if item.status == 0 %}
+                <a href="#" class="btn btn-danger ms-auto d-block order-btn" style="float:right;">Order Now</a>
+            {% else %}
+                <a href="#" class="btn btn-secondary ms-auto d-block order-btn btn-disabled" style="float:right;" >No Orderable</a>
+            {% endif %}
         </div>
     </div>
 </div>
 {% endblock content %}
+
+<style>
+    .order-btn {
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+    .order-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .btn-disabled {
+        background-color: #d6d6d6;
+        color: #6c757d;
+        pointer-events: none;
+        box-shadow: none;
+        transform: none;
+    }
+    .btn-disabled:hover {
+        transform: none;
+        box-shadow: none;
+    }
+</style>
