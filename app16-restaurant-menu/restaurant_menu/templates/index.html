@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Restaurant Menu</h1>
+<h1>Restaurant Menu</h1>
+
+    {% for item in item_list %}
+        <h3>{{ item.get_meal_type_display }}</h3>
+        <ul>
+            {% for meal in item_list %}
+                <li>{{ meal.meal }} - {{ meal.price}}$</li>
+            {% endfor %}
+        </ul>
+
+
+    {% endfor %}
+
 </body>
 </html>
