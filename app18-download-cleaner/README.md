@@ -31,6 +31,11 @@ or
 
 Python 3.x
 
+Updates:
+
+I have updates the script to move files to a "Trash" folder within hte Downloads folder instead of deleting them. 
+This allows for easier recovery of files that were accidentally deleted.
+
 ## License:
 
 This project is licensed under the MIT License. See the LICENSE file for more information.
