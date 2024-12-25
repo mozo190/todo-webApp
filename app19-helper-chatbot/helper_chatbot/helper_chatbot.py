@@ -16,6 +16,18 @@ class HelperChatbot:
         """
         return f"Hello! I am a chatbot that knows about {self.topic}. How can I help you today?"
 
+    def find_closest_match(self, question):
+        """
+        Finds the closest match to the user's question in the knowledge base.
+        :param question: The user's question as a string.
+        :return: A tuple containing the closest matching question and its answer, or None if no match is found.
+        """
+        question = question.lower()
+        for key in self.knowledge_base:
+            if question in key:
+                return key, self.knowledge_base[key]
+        return None
+
     def answer_question(self, question):
         """
         Answers a user's question based on the knowledge base.
@@ -24,7 +36,15 @@ class HelperChatbot:
         :return: The answer if found in the knowledge base, otherwise a message indicating the answer
          is not available or a default message.
         """
-        return self.knowledge_base.get(question.lower(), "I'm sorry, I don't have an answer to that question.")
+        exact_answer = self.knowledge_base.get(question.lower())
+        if exact_answer:
+            return exact_answer
+
+        closest_match = self.find_closest_match(question)
+        if closest_match:
+            return f'I think you might be asking about "{closest_match[0]}".\n Here is the answer: {closest_match[1]}'
+
+        return "I'm sorry, I don't have an answer to that question."
 
     def bye(self):
         """

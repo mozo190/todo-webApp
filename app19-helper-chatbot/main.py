@@ -3,7 +3,7 @@ from helper_chatbot.helper_chatbot import HelperChatbot
 topic = "Python programming"
 
 knowledge_base = {
-    "Python programming": "Python is a powerful programming language",
+    "python programming": "Python is a powerful programming language",
     "how do yoe define a function in Python": "you can define a function using the def keyword, "
                                               "followed by the function name, parentheses, and a colon",
     "data science": "Data Science is a multi-disciplinary field that uses scientific methods, processes, algorithms"
