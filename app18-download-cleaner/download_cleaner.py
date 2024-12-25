@@ -20,8 +20,25 @@ def is_file_old(file_path, days):
     file_modified = datetime.fromtimestamp(os.path.getmtime(file_path))
     return file_modified < file_age_limit
 
+# Statistic function
+class CleanerStatistic:
+    def __init__(self):
+        self.moved_files = 0
+        self.skipped_files = 0
 
-def clean_downloads_folder(folder_path, days):
+    def log_moved_file(self):
+        self.moved_files += 1
+
+    def log_skipped_file(self):
+        self.skipped_files += 1
+
+    def print_summary_statistic(self):
+        print(f'\nSummary:')
+        print(f'Moved files: {self.moved_files}')
+        print(f'Skipped files: {self.skipped_files}')
+
+
+def clean_downloads_folder(folder_path, days, stats):
     trash_folder = os.path.join(folder_path, 'Trash')
     os.makedirs(trash_folder, exist_ok=True)
 
@@ -42,8 +59,10 @@ def clean_downloads_folder(folder_path, days):
                         shutil.move(file_path, trash_path)
                         logging.info(f'Moved to trash: {file_path}')
                         print(f'Moved to trash: {file_path}')
+                        stats.log_moved_file()
                     else:
                         print(f'Skipped: {file_path}')
+                        stats.log_skipped_file()
                 except Exception as e:
                     logging.error(f'Error moving file: {file_path} - {e}')
 
@@ -63,6 +82,12 @@ if __name__ == "__main__":
     # Command line arguments
     command_line_input()
 
+    logging.info(f"Cleaning files older than {FILE_AGE_LIMIT_DAYS} days in {DOWNLOADS_PATH} is starting...")
     print(f"Cleaning files older than {FILE_AGE_LIMIT_DAYS} days in {DOWNLOADS_PATH} is starting...")
-    clean_downloads_folder(DOWNLOADS_PATH, FILE_AGE_LIMIT_DAYS)
+
+    stats = CleanerStatistic()
+    clean_downloads_folder(DOWNLOADS_PATH, FILE_AGE_LIMIT_DAYS, stats)
+    stats.print_summary_statistic()
+
+    logging.info("Cleaning process is completed.")
     print("Cleaning process is completed.")
