@@ -12,7 +12,9 @@ with col2:
     content = """
     I am a developer and a data scientist. I have a passion for data and I love to work with it.
     I have experience in Python, Java, SQL, and I am familiar with machine learning and deep learning.
-    I have a strong background in mathematics and statistics.
+    I am passionate to learn new things and I am always looking for new challenges.
+    The programing gives me the opportunity to create something new and useful.
+    It is like inventing something new every day.
     """
     st.info(content)
 
