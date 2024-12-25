@@ -26,7 +26,7 @@ class HelperChatbot:
         """
         return self.knowledge_base.get(question.lower(), "I'm sorry, I don't have an answer to that question.")
 
-    def farewell(self):
+    def bye(self):
         """
         Says goodbye to the user when they end the conversation.
 
