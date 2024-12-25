@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 from datetime import datetime, timedelta
 
 DOWNLOADS_PATH = os.path.expanduser("~/Downloads")
@@ -13,6 +14,9 @@ def is_file_old(file_path, days):
 
 
 def clean_downloads_folder(folder_path, days):
+    trash_folder = os.path.join(folder_path, 'Trash')
+    os.makedirs(trash_folder, exist_ok=True)
+
     if not os.path.exists(folder_path):
         print(f"Folder {folder_path} does not exist.")
         return
@@ -22,10 +26,11 @@ def clean_downloads_folder(folder_path, days):
             file_path = os.path.join(root, file)
             if is_file_old(file_path, days):
                 try:
-                    os.remove(file_path)
-                    print(f'Removed file: {file_path}')
+                    trash_path = os.path.join(trash_folder, file)
+                    shutil.move(file_path, trash_path)
+                    print(f'Removed file to trash: {file_path}')
                 except Exception as e:
-                    print(f'Error removing file: {file_path} - {e}')
+                    print(f'Error removing file to trash: {file_path} - {e}')
 
 
 def command_line_input():
