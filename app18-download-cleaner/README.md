@@ -34,7 +34,8 @@ Python 3.x
 ## Updates:
 
 * I have updates the script to move files to a "Trash" folder within hte Downloads folder instead of deleting them. This allows for easier recovery of files that were accidentally deleted.
-* Ask for user input, whether to move the file to trash or not
+* Ask for user input, whether to move the file to trash or not.
+* A new Cleaner Stats class has been added to track statistics about the cleaning process. It records the number of files moved and skipped and then prints the statistics at the ond of the program.
 
 ## License:
 
