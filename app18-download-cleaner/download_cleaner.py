@@ -23,7 +23,7 @@ def clean_downloads_folder(folder_path, days):
 
     for root, dirs, files in os.walk(folder_path):
         for file in files:
-            file_path = os.path.join(root, file)
+            file_path = str(os.path.join(root, file))
             if is_file_old(file_path, days):
                 try:
                     trash_path = os.path.join(trash_folder, file)
@@ -39,7 +39,8 @@ def command_line_input():
     parser.add_argument('--folder', default=DOWNLOADS_PATH, help='Folder path to clean')
     parser.add_argument('--days', type=int, default=FILE_AGE_LIMIT_DAYS, help='File age limit in days')
     args = parser.parse_args()
-    DOWNLOADS_PATH = args.folder
+
+    DOWNLOADS_PATH = str(args.folder)  # Convert to string to avoid Pathlib object
     FILE_AGE_LIMIT_DAYS = args.days
 
 
