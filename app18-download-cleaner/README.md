@@ -45,9 +45,9 @@ you can set the script to run automatically with the following steps:
 
 This .bat file will run the Python script. Create a text file with the following content and save it as, for example, clean_downloads.bat:
 
-@echo off
+`@echo off
 pythonw "C:\\az_elérési_út_ide\\a_script_fájl_útvonala\\download_cleaner.py" --folder "C:\\Users\\[Felhasználó_neve]\\Downloads" --days 30
-
+`
 **Important:** Change the python path to the valid Python executable if necessary. Change the paths according to your own folder.
 
 ## 2. Open the Task Scheduler.
