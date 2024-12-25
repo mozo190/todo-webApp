@@ -1,5 +1,7 @@
 import json
 
+import pyttsx3
+
 
 class HelperChatbot:
     def __init__(self, topic, knowledge_base, db_file="dictionary.db"):
@@ -14,13 +16,23 @@ class HelperChatbot:
         self.topic = topic
         self.knowledge_base = knowledge_base
         self.db_file = db_file
+        self.engine = pyttsx3.init()
         self.loading_additional_data()
+
+    def speak(self, text):
+        """
+        Uses text-to-speech to speak the given text.
+        """
+        self.engine.say(text)
+        self.engine.runAndWait()
 
     def greet(self):
         """
         Greets the user when they start a conversation with the chatbot.
         """
-        return f"Hello! I am a chatbot that knows about {self.topic}. How can I help you today?"
+        greeting = f"Hello! I am a chatbot that knows about {self.topic}. How can I help you today?"
+        self.speak(greeting)
+        return greeting
 
     def find_closest_match(self, question):
         """
@@ -44,26 +56,37 @@ class HelperChatbot:
         """
         exact_answer = self.knowledge_base.get(question.lower())
         if exact_answer:
+            self.speak(exact_answer)
             return exact_answer
 
         closest_match = self.find_closest_match(question)
         if closest_match:
-            return f'I think you might be asking about "{closest_match[0]}".\n Here is the answer: {closest_match[1]}'
+            response = (f"I'm not sure about that. Did you mean: '{closest_match[0]}'?\n"
+                        f" Here is the answer: {closest_match[1]}")
+            self.speak(response)
+            return response
 
+        self.speak("I'm sorry, I don't have an answer to that question.")
         print("I'm sorry, I don't have an answer to that question.")
+
         new_answer = input("Please provide an answer to this question: ").strip()
         if new_answer:
             self.save_additional_data(question, new_answer)
+            self.speak("Thank you for providing an answer. I will remember it for future reference.")
             return "Thank you for providing an answer. I will remember that for next time."
 
-        return "Alright, let me know if there is anything else I can help you with."
+        let_me_know = "Alright, let me know if there is anything else I can help you with."
+        self.speak(let_me_know)
+        return let_me_know
 
     def bye(self):
         """
         Says goodbye to the user when they end the conversation.
 
         """
-        return "Thank you for chatting with me. Have a great day!"
+        goodbye = "Thank you for chatting with me. Have a great day!"
+        self.speak(goodbye)
+        return goodbye
 
     def loading_additional_data(self):
         """
@@ -77,8 +100,10 @@ class HelperChatbot:
             with open(self.db_file, "w", encoding="utf-8") as file:
                 json.dump({}, file)
         except json.JSONDecodeError:
-            print("Error loading additional data from the database file.")
-            return
+            error_occurred = "Error loading additional data from the database file."
+            self.speak(error_occurred)
+            print(error_occurred)
+            return error_occurred
 
     def save_additional_data(self, question, answer):
         """
