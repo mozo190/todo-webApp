@@ -14,6 +14,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
+
 def is_file_old(file_path, days):
     file_age_limit = datetime.now() - timedelta(days=days)
     file_modified = datetime.fromtimestamp(os.path.getmtime(file_path))
@@ -33,9 +34,16 @@ def clean_downloads_folder(folder_path, days):
             file_path = str(os.path.join(root, file))
             if is_file_old(file_path, days):
                 try:
-                    trash_path = os.path.join(trash_folder, file)
-                    shutil.move(file_path, trash_path)
-                    logging.info(f'Moved to trash: {file_path}')
+                    print(f'Moving to trash: {file_path}? (y/n): ', end='')  # Ask for user input
+                    user_input = input().strip().lower()
+
+                    if user_input == 'y':
+                        trash_path = os.path.join(trash_folder, file)
+                        shutil.move(file_path, trash_path)
+                        logging.info(f'Moved to trash: {file_path}')
+                        print(f'Moved to trash: {file_path}')
+                    else:
+                        print(f'Skipped: {file_path}')
                 except Exception as e:
                     logging.error(f'Error moving file: {file_path} - {e}')
 
