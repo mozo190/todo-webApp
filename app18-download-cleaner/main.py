@@ -28,16 +28,19 @@ def clean_downloads_folder(folder_path, days):
                     print(f'Error removing file: {file_path} - {e}')
 
 
-if __name__ == "__main__":
-    # Command line arguments
+def command_line_input():
+    global DOWNLOADS_PATH, FILE_AGE_LIMIT_DAYS
     parser = argparse.ArgumentParser(description='Clean files older than N days in a folder.')
     parser.add_argument('--folder', default=DOWNLOADS_PATH, help='Folder path to clean')
     parser.add_argument('--days', type=int, default=FILE_AGE_LIMIT_DAYS, help='File age limit in days')
-
     args = parser.parse_args()
-
     DOWNLOADS_PATH = args.folder
     FILE_AGE_LIMIT_DAYS = args.days
+
+
+if __name__ == "__main__":
+    # Command line arguments
+    command_line_input()
 
     print(f"Cleaning files older than {FILE_AGE_LIMIT_DAYS} days in {DOWNLOADS_PATH} is starting...")
     clean_downloads_folder(DOWNLOADS_PATH, FILE_AGE_LIMIT_DAYS)
