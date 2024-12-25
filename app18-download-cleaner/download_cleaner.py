@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 import shutil
 from datetime import datetime, timedelta
@@ -6,6 +7,12 @@ from datetime import datetime, timedelta
 DOWNLOADS_PATH = os.path.expanduser("~/Downloads")
 FILE_AGE_LIMIT_DAYS = 30
 
+# Logging configuration
+logging.basicConfig(
+    filename='download_cleaner.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 def is_file_old(file_path, days):
     file_age_limit = datetime.now() - timedelta(days=days)
@@ -18,7 +25,7 @@ def clean_downloads_folder(folder_path, days):
     os.makedirs(trash_folder, exist_ok=True)
 
     if not os.path.exists(folder_path):
-        print(f"Folder {folder_path} does not exist.")
+        logging.error(f'Folder does not exist: {folder_path}')
         return
 
     for root, dirs, files in os.walk(folder_path):
@@ -28,9 +35,9 @@ def clean_downloads_folder(folder_path, days):
                 try:
                     trash_path = os.path.join(trash_folder, file)
                     shutil.move(file_path, trash_path)
-                    print(f'Removed file to trash: {file_path}')
+                    logging.info(f'Moved to trash: {file_path}')
                 except Exception as e:
-                    print(f'Error removing file to trash: {file_path} - {e}')
+                    logging.error(f'Error moving file: {file_path} - {e}')
 
 
 def command_line_input():
