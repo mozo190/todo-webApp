@@ -1,6 +1,5 @@
 import openai
 import requests
-from click import prompt
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -54,3 +53,7 @@ def webhook():
                     bot_response = generate_response(user_message)
                     send_message(sender_id, bot_response)
         return 'ok', 200
+
+
+if __name__ == '__main__':
+    app.run(port=5000)
