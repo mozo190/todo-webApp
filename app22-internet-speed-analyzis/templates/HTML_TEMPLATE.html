@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Speed Test</title>
+    <title>Internet Speed Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <h1>Internet Speed Analysis</h1>
+    <canvas id="myChart" width="800" height="400"></canvas>
+    <script>
+        async function fetchData() {
+            const data = await fetchData();
+            chart.data.labels = data.timestamps;
+            chart.data.datasets[0].data = data.download_speeds;
+            chart.data.datasets[1].data = data.upload_speeds;
+            chart.update();
+        }
 
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const speedChart = new Chart(ctx, {
+            type: 'line',
+            data : {
+                 labels: [],
+                 datasets: [
+                     {
+                         label: 'Download Speed (Mbps)',
+                         data: [],
+                         borderColor: 'rgba(75, 192, 192, 1)',
+                         borderWidth: 1
+                     },
+                     {
+                         label: 'Upload Speed (Mbps)',
+                         data: [],
+                         borderColor: 'rgba(255, 99, 132, 1)',
+                         borderWidth: 1
+                     }
+                 ]
+            },
+        options: {
+             responsive: true,
+             scales: {
+                 x: {
+                     title: {
+                          display: true,
+                          text: 'Time'
+                        }
+                    },
+                 y: {
+                    title: {
+                           display: true,
+                           text: 'Speed (Mbps)'
+                        }
+                    }
+                }
+            }
+        });
+
+        setInterval(() => {
+            fetchData();
+        }, 1000);
+    </script>
 </body>
 </html>
