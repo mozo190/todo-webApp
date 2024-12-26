@@ -1,4 +1,7 @@
+import time
 from collections import Counter
+
+import keyboard
 
 
 class TypingAnalyzer:
@@ -25,3 +28,15 @@ class TypingAnalyzer:
         print("\nMost typed words this session:")
         for word, count in self.word_count.most_common(10):
             print(f"{word}: {count}")
+
+    def start(self):
+        print(
+            "Typing analyzer started. Press space to add a word, backspace to delete a character, and Ctrl+C to exit.")
+        keyboard.hook(self.on_key_event)
+        while self.running:
+            time.sleep(0.1)
+            if keyboard.is_pressed('esc'):
+                self.running = False
+                self.add_word()
+                self.print_top_words()
+                print("Exiting typing analyzer.")
