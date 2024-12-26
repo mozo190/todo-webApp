@@ -57,14 +57,14 @@ https://<ngrok_url>/webhook
 
 ## Endpoints:
 
-'GET /webhook' - Verify the Facebook Messenger webhook
-'POST /webhook' - Receive messages from Facebook Messenger
-'POST /generate' - Generate responses using OpenAI GPT-3
+* 'GET /webhook' - Verify the Facebook Messenger webhook
+* 'POST /webhook' - Receive messages from Facebook Messenger
+* 'POST /generate' - Generate responses using OpenAI GPT-3
 
 ## Functions:
 
-'send_message(recipient_id, message_text)' - Send a message to a user on Facebook Messenger
-'generate_response(user_message)' - Generate a response using OpenAI GPT-3
+* 'send_message(recipient_id, message_text)' - Send a message to a user on Facebook Messenger
+* 'generate_response(user_message)' - Generate a response using OpenAI GPT-3
 
 ## License
 
