@@ -24,6 +24,14 @@ class TypingAnalyzer:
             self.word_count[self.word_buffer] += 1
             self.word_buffer = ""
 
+    # Save the results to a file
+    def save_results_to_file(self, filename="typing_results.txt"):
+        with open(filename, 'w') as file:
+            file.write("Most typed words this session:\n")
+            for word, count in self.word_count.most_common():
+                file.write(f"{word}: {count}\n")
+        print(f"Results saved to {filename}")
+
     def print_top_words(self):
         print("\nMost typed words this session:")
         for word, count in self.word_count.most_common(10):
