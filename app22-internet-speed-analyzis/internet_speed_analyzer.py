@@ -33,7 +33,7 @@ def measure_speed():
         download_speed = tester.download() / 1_000_000  # Convert to Mbps
         upload_speed = tester.upload() / 1_000_000  # Convert to Mbps
         speed_data.append({
-            'timestamp': tester.timestamp,
+            'timestamp': time.strftime('%H:%M:%S'),
             'download_speed': download_speed,
             'upload_speed': upload_speed
         })
