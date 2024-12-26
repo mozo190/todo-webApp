@@ -47,4 +47,5 @@ class TypingAnalyzer:
                 self.running = False
                 self.add_word()
                 self.print_top_words()
+                self.save_results_to_file()
                 print("Exiting typing analyzer.")
