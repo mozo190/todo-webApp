@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Internet Speed Test</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 </head>
 <body>
     <h1>Internet Speed Analysis</h1>
@@ -52,6 +53,17 @@
             },
         options: {
              responsive: true,
+             plugins: {
+                  datalabels: {
+                       display: true,
+                       color: 'black',
+                       align: 'top',
+                       formatter: (value) => `${value} Mbps`,
+                       font: {
+                            weight: 'bold'
+                        }
+                    }
+                },
              scales: {
                  x: {
                      title: {
@@ -66,7 +78,8 @@
                         }
                     }
                 }
-            }
+            },
+            plugins: [ChartDataLabels] // Required for datalabels
         });
 
         setInterval(updateChart, 1000);
