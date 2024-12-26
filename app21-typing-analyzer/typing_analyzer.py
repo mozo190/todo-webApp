@@ -2,6 +2,7 @@ import time
 from collections import Counter
 
 import keyboard
+from colorama import Fore, Style
 
 
 class TypingAnalyzer:
@@ -33,19 +34,20 @@ class TypingAnalyzer:
         print(f"Results saved to {filename}")
 
     def print_top_words(self):
-        print("\nMost typed words this session:")
-        for word, count in self.word_count.most_common(10):
-            print(f"{word}: {count}")
+        print(Fore.CYAN + "\nMost typed words this session:" + Style.RESET_ALL)  # Print typed words colored in cyan
+        for word, count in self.word_count.most_common():
+            print(Fore.GREEN + f"{word}: {count}" + Style.RESET_ALL)  # Print typed words colored in green
 
     def start(self):
-        print(
-            "Typing analyzer started. Press space to add a word, backspace to delete a character, and Ctrl+C to exit.")
+        print(Fore.YELLOW +
+              "Typing analyzer started. Press space to add a word, "
+              "backspace to delete a character, and Ctrl+C to exit." + Style.RESET_ALL)
         keyboard.hook(self.on_key_event)
         while self.running:
             time.sleep(0.1)
             if keyboard.is_pressed('esc'):
-                self.running = False
                 self.add_word()
+                self.running = False
                 self.print_top_words()
                 self.save_results_to_file()
-                print("Exiting typing analyzer.")
+                print(Fore.RED + "Exiting typing analyzer." + Style.RESET_ALL)  # Print exit message in red
