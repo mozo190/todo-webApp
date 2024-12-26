@@ -32,10 +32,12 @@ def measure_speed():
         tester.get_best_server()
         download_speed = tester.download() / 1_000_000  # Convert to Mbps
         upload_speed = tester.upload() / 1_000_000  # Convert to Mbps
+        ping = tester.results.ping
         speed_data.append({
             'timestamp': time.strftime('%H:%M:%S'),
-            'download_speed': download_speed,
-            'upload_speed': upload_speed
+            'download_speed': round(download_speed),
+            'upload_speed': round(upload_speed),
+            'ping': round(ping, 2)
         })
         if len(speed_data) > 50:  # Keep only the last 50 data points
             speed_data.pop(0)
