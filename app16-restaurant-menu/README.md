@@ -92,15 +92,15 @@ python manage.py runserver
 
 ## Screenshots
 
-[![Restaurant Menu App](admin.png)](admin.png)
+[![Restaurant Menu App](static/imgs/admin.png)](static/imgs/admin.png)
 
-[![Restaurant Menu App](menu.png)](menu.png)
+[![Restaurant Menu App](static/imgs/menu.png)](static/imgs/menu.png)
 
-[![Restaurant Menu App](admin_change_item.png)](admin_change_item.png)
+[![Restaurant Menu App](static/imgs/admin_change_item.png)](static/imgs/admin_change_item.png)
 
-[![Restaurant Menu App](login.png)](login.png)
+[![Restaurant Menu App](static/imgs/login.png)](static/imgs/login.png)
 
-[![Restaurant Menu App](password_reset.png)](password_reset.png)
+[![Restaurant Menu App](static/imgs/password_reset.png)](static/imgs/password_reset.png)
 
 
 ## License
