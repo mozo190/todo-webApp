@@ -1,5 +1,5 @@
 import random
-import time
+import sys
 
 import pygame
 
@@ -35,14 +35,31 @@ def create_drop():
     return {'x': x, 'y': y, 'char': char, 'speed': speed}
 
 
-def rain_effect(width=80, height=24, delay=0.1):
+def main():
+    clock = pygame.time.Clock()
     while True:
-        clear_screen()
-        for _ in range(height):
-            line = ''.join(random.choice([' ', '*', '#', '.']) for _ in range(width))
-            print(line)
-        time.sleep(delay)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        screen.fill(BACKGROUND_COLOR)
+        pygame.draw.circle(screen, CLOUD_COLOR, cloud_rect.center, CLOUD_RADIUS)
+
+        if random.random() < 0.3:  # 30% chance
+            drops.append(create_drop())
+
+        for drop in drops:  # Draw drops
+            drop['y'] += drop['speed']  # Move drop down
+            if drop['y'] > SCREEN_HEIGHT:  # Drop is out of screen
+                drops.remove(drop)
+            else:
+                text_surface = font.render(drop['char'], True, TEXT_COLOR)
+                screen.blit(text_surface, (drop['x'], drop['y']))
+
+        pygame.display.flip()
+        clock.tick(30)
 
 
 if __name__ == '__main__':
-    rain_effect()
+    main()
