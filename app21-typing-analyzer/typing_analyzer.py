@@ -20,7 +20,7 @@ class TypingAnalyzer:
                 self.word_buffer += event.name
 
     def add_word(self):
-        if self.word_buffer:
+        if self.word_buffer and self.word_buffer.isalpha():  # Only add words that are not empty and contain letters
             self.word_count[self.word_buffer] += 1
             self.word_buffer = ""
 
