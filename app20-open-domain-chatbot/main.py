@@ -1,5 +1,6 @@
 import openai
 import requests
+from click import prompt
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -25,7 +26,13 @@ def send_message(recipient_id, message_text):
 
 
 def generate_response(user_message):
-    pass
+    """Generates a response using OpenAI's GPT-3 model"""
+    response = openai.Completion.create(
+        engine="text.davinci-003",
+        prompt=user_message + "\n-",
+        max_tokens=150
+    )
+    return response.choices[0].text.strip()
 
 
 @app.route('/webhook', methods=['GET', 'POST'])
