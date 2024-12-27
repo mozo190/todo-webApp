@@ -33,8 +33,18 @@ drop_sounds = [pygame.mixer.Sound('assets/drop-water-1.wav'),
 
 bg_sound = pygame.mixer.Sound('assets/background_sound.mp3')
 
+
 def play_drop_sound():
     random.choice(drop_sounds).play()
+
+
+def handle_click(pos):
+    for drop in drops[:]:
+        text_surface = font.render(drop['char'], True, pygame.Color(drop['color']))
+        text_rect = text_surface.get_rect(topleft=(drop['x'], drop['y']))
+        if text_rect.collidepoint(pos):
+            drops.remove(drop)
+            break
 
 
 def create_drop(cloud_rect_):
@@ -54,6 +64,8 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                handle_click(event.pos)
 
         screen.fill(BACKGROUND_COLOR)
         # Cloud drawing
