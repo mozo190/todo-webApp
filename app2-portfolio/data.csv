@@ -1,8 +1,8 @@
 title;description;url;image
-Todo App;A distraction-free web app to help you focus on creating and completing tasks.;https://github.com/mozo190/todo-webApp/blob/main/todo/gui.py;https://github.com/mozo190/todo-webApp/blob/main/app2-portfolio/images/1.png
-Portfolio Website;A website built entirely in Python to showcase coding projects and apps.;https://github.com/mozo190/todo-webApp/tree/main/app2-portfolio;https://github.com/mozo190/todo-webApp/blob/main/app2-portfolio/images/2.png
-PDF Templates;A script that generates PDF templates of multiple pages given some predefined guidelines.;https://github.com/mozo190/todo-webApp/tree/main/app4-pdf_template;https://github.com/mozo190/todo-webApp/blob/main/app2-portfolio/images/3.png
-PDF Invoices;A script that reads invoice records from Excel files and automatically generates PDF invoices.;https://github.com/mozo190/todo-webApp/tree/main/app4-invoice_generation;https://github.com/mozo190/todo-webApp/blob/main/app2-portfolio/images/4.png
+Todo App;A distraction-free web app to help you focus on creating and completing tasks.;https://github.com/mozo190/todo-webApp/blob/main/todo/gui.py;1.png
+Portfolio Website;A website built entirely in Python to showcase coding projects and apps.;https://github.com/mozo190/todo-webApp/tree/main/app2-portfolio;2.png
+PDF Templates;A script that generates PDF templates of multiple pages given some predefined guidelines.;https://github.com/mozo190/todo-webApp/tree/main/app4-pdf_template;3.png
+PDF Invoices;A script that reads invoice records from Excel files and automatically generates PDF invoices.;https://github.com/mozo190/todo-webApp/tree/main/app4-invoice_generation;4.png
 Positive News Site;A website that gets data from a news API and uses sentiment analysis to publish only positive news.;https://github.com/mozo190/todo-webApp/tree/main/student_mood;5.png
 Weather API;A REST API built with Python and Flask to serve historical weather data for various cities.;https://github.com/mozo190/todo-webApp/tree/main/app7-weather-api-with-GUI;6.png
 Download Cleaner;A script that monitors the Downloads folder and deletes old files keeping the folder clean.;https://github.com/mozo190/todo-webApp/tree/main/app18-download-cleaner;7.png
