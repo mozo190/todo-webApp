@@ -24,6 +24,18 @@ running = True
 
 drops = []
 
+drop_sounds = [pygame.mixer.Sound('assets/drop-water-1.wav'),
+               pygame.mixer.Sound('assets/drop-water-2.wav'),
+               pygame.mixer.Sound('assets/drop-water-3.wav'),
+               pygame.mixer.Sound('assets/drop-water-4.wav'),
+               pygame.mixer.Sound('assets/drop-water-5.wav'),
+               pygame.mixer.Sound('assets/drop-water-6.wav')]
+
+bg_sound = pygame.mixer.Sound('assets/background_sound.mp3')
+
+def play_drop_sound():
+    random.choice(drop_sounds).play()
+
 
 def create_drop(cloud_rect_):
     x = random.randint(cloud_rect_.left, cloud_rect_.right)
@@ -35,7 +47,8 @@ def create_drop(cloud_rect_):
 
 
 def main():
-    cloud = Cloud(SCREEN_WIDTH // 2, 100, 100, CLOUD_COLOR)
+    cloud = Cloud(SCREEN_WIDTH // 2, 100)
+    bg_sound.play(-1)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -56,8 +69,10 @@ def main():
 
                 # Check if drop hits the ground
                 if drop['y'] > SCREEN_HEIGHT - 100:
+
                     drop['y'] = SCREEN_HEIGHT - 100  # Reset drop position
                     drop['speed'] = -drop['speed'] * 0.3  # Reverse drop speed for bouncing effect
+                    play_drop_sound()  # Play drop sound
                     if abs(drop['speed']) < 1:  # If speed is too low, remove the drop
                         drop['fading'] = True  # Start fading out the drop
 
