@@ -14,7 +14,7 @@ BACKGROUND_COLOR = (0, 0, 0)
 CLOUD_COLOR = (255, 255, 255)
 TEXT_COLOR = 'yellow',
 GRAVITY = 0.2
-THUNDER_TIMINGS = [51000, 132000, 156000, 188000, 238000, 245000]  # Timings for thunder sound effects in milliseconds
+THUNDER_TIMINGS = [6000, 51000, 132000, 156000, 188000, 238000, 245000]  # Timings for thunder sound effects in milliseconds
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Rain Effect')
@@ -79,7 +79,7 @@ def main():
                 handle_click(event.pos)
 
         screen.fill(BACKGROUND_COLOR)
-        check_thunder() # Check if it's time to trigger thunder
+        check_thunder()  # Check if it's time to trigger thunder
         lightning.update(screen)  # Update lightning effect
 
         # Cloud drawing

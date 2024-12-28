@@ -26,7 +26,9 @@ class Lightning:
                 # White layer to simulate lightning
                 overlay = pygame.Surface(surface.get_size(), pygame.SRCALPHA)
                 overlay.fill((255, 255, 255, intensity))
+                surface.blit(overlay, (0, 0)) # Apply the overlay
             else:
                 # Step to the next flash
                 self.current_flash += 1
-                self.start_time = pygame.time.get_ticks()
+                if self.current_flash < len(self.pattern):
+                    self.start_time = pygame.time.get_ticks()
