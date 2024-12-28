@@ -9,16 +9,28 @@ with st.form(key='contact_form'):
     email = st.text_input("Your Email address")
     message = st.text_area("Your Message")
 
-    message_to_you = f"""\
-    Subject: New email from {name} ({email})
-    
-    From: {email}
-    {message}
-    
-    Buy!
-    """
     submit = st.form_submit_button("Submit")
 
     if submit:
-        send_email(message_to_you)
-        st.success("Your message has been sent!")
+        if not name.strip():
+            st.error("Please enter your name.")
+        elif not email.strip():
+            st.error("Please enter your email address.")
+        elif not message.strip():
+            st.error("Please enter your message.")
+        else:
+
+            message_to_you = f"""\
+            Subject: New email from {name} ({email})
+
+            From: {email}
+            {message}
+
+            Buy!
+            """
+
+            try:
+                send_email(message_to_you)
+                st.success("Your message has been sent!")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
