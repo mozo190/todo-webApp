@@ -4,6 +4,7 @@ import sys
 import pygame
 
 from classes.cloud import Cloud
+from classes.lightning import Lightning
 
 pygame.init()
 
@@ -13,12 +14,14 @@ BACKGROUND_COLOR = (0, 0, 0)
 CLOUD_COLOR = (255, 255, 255)
 TEXT_COLOR = 'yellow',
 GRAVITY = 0.2
+THUNDER_TIMINGS = [51000, 132000, 156000, 188000, 238000, 245000]  # Timings for thunder sound effects in milliseconds
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Rain Effect')
 
 font = pygame.font.SysFont('Arial', 13)
 clock = pygame.time.Clock()
+lightning = Lightning()
 
 running = True
 
@@ -31,7 +34,7 @@ drop_sounds = [pygame.mixer.Sound('assets/drop-water-1.wav'),
                pygame.mixer.Sound('assets/drop-water-5.wav'),
                pygame.mixer.Sound('assets/drop-water-6.wav')]
 
-bg_sound = pygame.mixer.Sound('assets/background_sound.mp3')
+bg_sound = pygame.mixer.Sound('assets/background_sound.wav')
 
 
 def play_drop_sound():
@@ -56,6 +59,14 @@ def create_drop(cloud_rect_):
     return {'x': x, 'y': y, 'char': char, 'speed': speed, 'color': color, 'alpha': 255, 'fading': False}
 
 
+def check_thunder():
+    current_time = pygame.time.get_ticks()
+    for thunder_time in THUNDER_TIMINGS:
+        if thunder_time <= current_time < thunder_time + 1000:
+            lightning.trigger()
+            THUNDER_TIMINGS.remove(thunder_time)  # Remove the thunder time from the list to avoid triggering it again
+
+
 def main():
     cloud = Cloud(SCREEN_WIDTH // 2, 100)
     bg_sound.play(-1)
@@ -68,9 +79,13 @@ def main():
                 handle_click(event.pos)
 
         screen.fill(BACKGROUND_COLOR)
+        check_thunder() # Check if it's time to trigger thunder
+        lightning.update(screen)  # Update lightning effect
+
         # Cloud drawing
         cloud.draw(screen)
 
+        # Create drops
         if random.random() < 0.8:  # 80% chance
             drops.append(create_drop(cloud.get_rect()))
 
@@ -98,6 +113,7 @@ def main():
             text_surface.set_alpha(drop['alpha'])
             screen.blit(text_surface, (drop['x'], drop['y']))
 
+        # Update the display
         pygame.display.flip()
         clock.tick(30)
 
