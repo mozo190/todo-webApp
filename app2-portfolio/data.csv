@@ -19,7 +19,7 @@ Student Management System;A desktop PyQt6 GUI app for managing university studen
 School Management System;A desktop PyQt6 GUI app for managing complex university data with an SQL database backend.;https://pythonhow.com;18.png
 Restaurant Menu Web App;A Django web app to let customers see a restaurant menu and meal availability.;https://github.com/mozo190/todo-webApp/tree/main/app16-restaurant-menu;19.png
 Online Store;A Django online store app where users can place orders and sellers can manage them.;https://github.com/mozo190/todo-webApp/tree/main/app16-restaurant-menu;20.png
-PDF to mp3 converter;A simple tool to convert text from PDF files into MP3 audio format using a user-friendly interface.;https://github.com/mozo190/todo-webApp/tree/main/app10-pdf-to-mp3-with-women-voice;21.png
+PDF to mp3 converter;A simple tool to convert text from PDF files into MP3 audio format using a user-friendly interface, used tkinter;https://github.com/mozo190/todo-webApp/tree/main/app10-pdf-to-mp3-with-women-voice;21.png
 Average Speed Calculator;A simple tool to calculate average speed based on distance and time, supporting both metric (km) and imperial (miles) units.;https://github.com/mozo190/todo-webApp/tree/main/average-speed-calculator;22.png
 Browser Automation with GUI;This app  is a user-friendly application designed to automate web interactions effortlessly through a graphical interface.;https://github.com/mozo190/todo-webApp/tree/main/app-13-browser-automation-selenium;23.png
 Job Application form with Flask;Streamlined Job Application form built with Flask, designed for seamless data submission and handling.;https://github.com/mozo190/todo-webApp/tree/main/app15-flask-form;24.png
@@ -29,3 +29,9 @@ Brick Breaker Game with kivy;This is an engaging and fun game where the player c
 Helicopter Game;A simple Helicopter Game built using the Kivy framework in Python.;https://github.com/mozo190/pycharmProjects/tree/master/pythonProject-Helicopter_game;28.png
 Snake Game;This is a simple snake game built using the Kivy framework in Python.;https://github.com/mozo190/pycharmProjects/tree/master/pythonProject-snake_game;29.png
 Space Invader Game;A simple space invader game built with the Kivy framework in Python, where players control a spaceship to shoot down enemy aliens.;https://github.com/mozo190/pycharmProjects/tree/master/pythonProject_space_invader_game;30.png
+PDF to mp3 converter 2;The application uses the PyPDF2 library to extract text from the PDF file and the gTTS library to convert the text to an audio file. The GUI is Kivy framework.;https://github.com/mozo190/pdf-to-audio;31.png
+MP4 to MP3 Converter;This application allows users to convert MP4 files to MP3 files. The user can select a file from their computer and convert it to an MP3 file using kivy framework.;https://github.com/mozo190/mp4_to_mp3;32.png
+Translator App;It allows users to translate text from one language to another using the translate library. The app features a user-friendly with Kivy framework.;https://github.com/mozo190/Translator_App;33.png
+Audio Recorder App;The Audio Recorder App is a simple application built using Python and KivyMD that allows users - wiht a user-friendly interface -, to record audio and save it as a .wav file.;https://github.com/mozo190/Audio_recorder_app;34.png
+Extracting Text from Image;This Python script extracts text from an image using the Tesseract Optical Character Recognition (OCR).;https://github.com/mozo190/Extracting_Text_from_Images;35.png
+Screen Recorder App;This is a simple screen recording application built using Python, OpenCV, PyAutoGUI, and KivyMD. The app allows you to record your screen and save the recording as an MP4 file.;https://github.com/mozo190/Screen_Recorder_App;36.png

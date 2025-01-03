@@ -36,7 +36,7 @@ st.write("")
 
 # Create columns for the cards
 col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])  # 3 columns
-df = pd.read_csv('data.csv', sep=';')
+df = pd.read_csv('data.csv', sep=';', encoding='utf-8')
 
 # Add images to the dataframe
 df['image'] = df['image'].apply(lambda x: f"images/{x}")
