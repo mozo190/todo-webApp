@@ -10,7 +10,7 @@ content = """
     I am passionate to learn new things and I am always looking for new challenges.
     The programing gives me the opportunity to create something new and useful.
     It is like inventing something new every day.<br><hr style="border: 1px solid lightgrey; margin: 30px 20px;">
-    Below you can find some fo the apps I have created in Python.
+    Below you can find some of the apps I have created in Python.
     Feel free to contact me if you have any questions or suggestions.
     """
 
