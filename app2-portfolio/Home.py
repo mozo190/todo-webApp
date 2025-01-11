@@ -23,7 +23,7 @@ card_style = (
 )
 
 with col1:
-    st.image(os.path.join(os.getcwd(), 'images/mozo480.png'))
+    st.image('images/mozo480.png')
 
 with col2:
     with st.container():
