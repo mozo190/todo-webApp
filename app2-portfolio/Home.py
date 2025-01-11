@@ -44,7 +44,7 @@ col3, empty_col, col4 = st.columns([1.5, 0.5, 1.5])  # 3 columns
 df = pd.read_csv('data.csv', sep=';', encoding='utf-8')
 
 # Add images to the dataframe
-df['image'] = df['image'].apply(lambda x: f"images/{x}")
+df['image'] = df['image'].apply(lambda x: f"app2-portfolio/images/{x}")
 
 for i, row in df.iterrows():
     if i % 2 == 0:
