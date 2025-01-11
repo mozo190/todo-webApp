@@ -1,3 +1,5 @@
+import os.path
+
 import pandas as pd
 import streamlit as st
 
@@ -21,7 +23,7 @@ card_style = (
 )
 
 with col1:
-    st.image('images/mo-zo-480.png')
+    st.image(os.path.join(os.getcwd(), 'images/mo-zo-480.png'))
 
 with col2:
     with st.container():
@@ -44,10 +46,13 @@ df['image'] = df['image'].apply(lambda x: f"images/{x}")
 for i, row in df.iterrows():
     if i % 2 == 0:
         with col3:
-            st.markdown(f"<h3>{row['title']}</h3>",unsafe_allow_html=True)
-            st.markdown(f"<p>{row['description']}</p>",unsafe_allow_html=True)
+            st.markdown(f"<h3>{row['title']}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<p>{row['description']}</p>", unsafe_allow_html=True)
             st.image(row['image'], use_container_width=True, caption=row['title'])
-            st.markdown(f"<a href='{row['url']}' target='_blank' style='display: inline-block; margin-top: 10px;'>Source code</a>",unsafe_allow_html=True)
+            st.markdown(
+                f"<a href='{row['url']}' target='_blank' style='display: inline-block; "
+                f"margin-top: 10px;'>Source code</a>",
+                unsafe_allow_html=True)
             st.markdown("<hr style='border: 1px solid lightgrey; margin: 30px 20px;'>", unsafe_allow_html=True)
 
     else:
@@ -56,7 +61,7 @@ for i, row in df.iterrows():
             st.markdown(f"<p>{row['description']}</p>", unsafe_allow_html=True)
             st.image(row['image'], use_container_width=True, caption=row['title'])
             st.markdown(
-                f"<a href='{row['url']}' target='_blank' style='display: inline-block; margin-top: 10px;'>Source code</a>",
+                f"<a href='{row['url']}' target='_blank' style='display: inline-block;"
+                f" margin-top: 10px;'>Source code</a>",
                 unsafe_allow_html=True)
             st.markdown("<hr style='border: 1px solid lightgrey; margin: 30px 20px;'>", unsafe_allow_html=True)
-
