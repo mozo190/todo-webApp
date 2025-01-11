@@ -8,7 +8,7 @@ def send_email(message):
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
 
-    username = st.secrets["USER_NAME"]  # Enter your address
+    username = "mozo37@gmail.com"  # Enter your address
     password = st.secrets["EMAIL_PASSWORD"]   # Enter your password
     st.write(f"username: {username}\npassword: {password[:3]}...")
 
