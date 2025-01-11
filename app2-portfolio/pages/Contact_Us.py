@@ -34,3 +34,4 @@ with st.form(key='contact_form'):
                 st.success("Your message has been sent!")
             except Exception as e:
                 st.error(f"An error occurred: {e}")
+                st.write(f"Please try again later or contact me directly at {send_email.username}")
