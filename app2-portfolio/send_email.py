@@ -8,9 +8,8 @@ def send_email(message):
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
 
-    username = "mozo37@gmail.com"  # Enter your address
-    password = st.secrets["EMAIL_PASSWORD"]   # Enter your password
-    st.write(f"username: {username}\npassword: {password[:3]}...")
+    username = st.secrets["app2-portfolio_USER_NAME"]  # Enter your address
+    password = st.secrets["app2-portfolio_EMAIL_PASSWORD"]   # Enter your password
 
     receiver_email = "mozo37@gmail.com"  # Enter receiver address
     context = ssl.create_default_context()
