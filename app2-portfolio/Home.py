@@ -24,7 +24,7 @@ card_style = (
 
 with col1:
     try:
-        st.image('assets/img/mozo480.png')
+        st.image('images/38.png', use_container_width=True)
     except FileNotFoundError:
         st.write("Zoltan Molnar image")
 
