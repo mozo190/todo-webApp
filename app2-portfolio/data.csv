@@ -1,13 +1,13 @@
 title;description;url;image
-Todo App;A distraction-free web app to help you focus on creating and completing tasks.;https://github.com/mozo190/todo-webApp/blob/main/todo/gui.py;1.png
-Portfolio Website;A website built entirely in Python to showcase coding projects and apps.;https://github.com/mozo190/todo-webApp/tree/main/app2-portfolio;2.png
-PDF Templates;A script that generates PDF templates of multiple pages given some predefined guidelines.;https://github.com/mozo190/todo-webApp/tree/main/app4-pdf_template;3.png
-PDF Invoices;A script that reads invoice records from Excel files and automatically generates PDF invoices.;https://github.com/mozo190/todo-webApp/tree/main/app4-invoice_generation;4.png
-Positive News Site;A website that gets data from a news API and uses sentiment analysis to publish only positive news.;https://github.com/mozo190/todo-webApp/tree/main/student_mood;5.png
-Weather API;A REST API built with Python and Flask to serve historical weather data for various cities.;https://github.com/mozo190/todo-webApp/tree/main/app7-weather-api-with-GUI;6.png
-Download Cleaner;A script that monitors the Downloads folder and deletes old files keeping the folder clean.;https://github.com/mozo190/todo-webApp/tree/main/app18-download-cleaner;7.png
-Tour Scraper;A program that checks a music band's website and sends an email when there are new tours.;https://pythonhow.com;8.png
-Helper Chatbot;A chatbot that knows about a specific topic and answers questions regarding that topic.;https://github.com/mozo190/todo-webApp/tree/main/app19-helper-chatbot;9.png
+Todo App;A distraction-free web app to help you focus on creating and completing tasks.;https://github.com/mozo190/todo-webApp/blob/main/todo/gui.py;01.png
+Portfolio Website;A website built entirely in Python to showcase coding projects and apps.;https://github.com/mozo190/todo-webApp/tree/main/app2-portfolio;02.png
+PDF Templates;A script that generates PDF templates of multiple pages given some predefined guidelines.;https://github.com/mozo190/todo-webApp/tree/main/app4-pdf_template;03.png
+PDF Invoices;A script that reads invoice records from Excel files and automatically generates PDF invoices.;https://github.com/mozo190/todo-webApp/tree/main/app4-invoice_generation;04.png
+Positive News Site;A website that gets data from a news API and uses sentiment analysis to publish only positive news.;https://github.com/mozo190/todo-webApp/tree/main/student_mood;05.png
+Weather API;A REST API built with Python and Flask to serve historical weather data for various cities.;https://github.com/mozo190/todo-webApp/tree/main/app7-weather-api-with-GUI;06.png
+Download Cleaner;A script that monitors the Downloads folder and deletes old files keeping the folder clean.;https://github.com/mozo190/todo-webApp/tree/main/app18-download-cleaner;07.png
+Tour Scraper;A program that checks a music band's website and sends an email when there are new tours.;https://pythonhow.com;08.png
+Helper Chatbot;A chatbot that knows about a specific topic and answers questions regarding that topic.;https://github.com/mozo190/todo-webApp/tree/main/app19-helper-chatbot;09.png
 Open Domain Chatbot;A chatbot built that can discuss anything with a human and is built using the Facebook API.;https://github.com/mozo190/todo-webApp/tree/main/app20-open-domain-chatbot;10.png
 Webcam Motion Detector;A program that monitors the computer webcam and sends an email when a new object enters the view.;https://github.com/mozo190/todo-webApp/tree/main/app9-webcam-alert;11.png
 Typing Analyzer;A program that monitors the computer keyboard and returns the most typed words of the session.;https://github.com/mozo190/todo-webApp/tree/main/app21-typing-analyzer;12.png
@@ -37,3 +37,4 @@ Extracting Text from Image;This Python script extracts text from an image using 
 Screen Recorder App;This is a simple screen recording application built using Python, OpenCV, PyAutoGUI, and KivyMD. The app allows you to record your screen and save the recording as an MP4 file.;https://github.com/mozo190/Screen_Recorder_App;36.png
 Unit Converter App;The Unit converter app is a Python-based application that allows users to convert berween various units of measurement. The app supports conversions for length, area, volume, mass, and temperature units.;https://github.com/mozo190/Unit_convertor;37.png
 Chat Room Application;Experience seamless and vibrant real-time communication with our colorful, user-freindly chat application that brings conversations to life! This app allows multiple clients to connect to a server and chat with each other.;https://github.com/mozo190/Chat_Room_App;38.png
+Munkalap Management System;This is a Python-based  application for managing various tasks related to work orders. It is designed to be used by a small team of workers who need to keep track of their work orders. The application allows provides a  graphical user interface (GUI) for creating, viewing, and managing work orders, invoices, and other related tasks.;https://github.com/mozo190/CROSS_like;39.png
